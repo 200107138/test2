@@ -11,7 +11,7 @@ class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
     private var titles = arrayOf("Cgfgdf", "Cgfgdf", "Cgfgdf", "Cgfgdf")
     private var details = arrayOf("Cgfgdf", "Cgfgdf", "Cgfgdf", "Cgfgdf")
-    private var images = intArrayOf(R.drawable.round_image, R.drawable.round_image, R.drawable.round_image, R.drawable.round_image)
+    private val images = intArrayOf(R.drawable.round_image, R.drawable.round_image, R.drawable.round_image, R.drawable.round_image)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.card_layout, parent, false)
