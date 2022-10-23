@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">test</string>
+    <string name="score">99</string>
+    <string name="stats1">rgregergergerger</string>
+    <string name="stats2">rgregergegegergrger</string>
+    <string name="stats3">rgregergegegerger</string>
+    <string name="stats4">rgregegergerger</string>
+    <string name="name">NAME SURNAME</string>
+
 </resources>
