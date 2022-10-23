@@ -29,14 +29,8 @@ class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
     }
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        var itemImage: ImageView
-        var itemTitle: TextView
-        var itemDetail: TextView
-
-        init {
-            itemImage = itemView.findViewById(R.id.item_image)
-            itemTitle = itemView.findViewById(R.id.item_title)
-            itemDetail = itemView.findViewById(R.id.item_detail)
-        }
+        var itemImage: ImageView = itemView.findViewById(R.id.item_image)
+        var itemTitle: TextView = itemView.findViewById(R.id.item_title)
+        var itemDetail: TextView = itemView.findViewById(R.id.item_detail)
     }
 }
