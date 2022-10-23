@@ -7,4 +7,5 @@
     <string name="stats4">rgregegergerger</string>
     <string name="name">NAME SURNAME</string>
     <string name="start_button">Start</string>
+    <string name="hello">Click when color change to Green</string>
 </resources>
