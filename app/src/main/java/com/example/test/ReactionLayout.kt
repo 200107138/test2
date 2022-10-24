@@ -14,17 +14,19 @@ import kotlin.math.roundToInt
 class ReactionLayout : Fragment(R.layout.reaction_layout) {
     private lateinit var binding: ReactionLayoutBinding
     var reactiontimesec = 0.000
-    var sec = 0.000
     var finished = 1
-
+    var attempt = 0
+    var start = 0.000
+    var end = 0.000
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = ReactionLayoutBinding.bind(view)
         binding.starter.setOnClickListener{
-
+            val rnds = (2500..7000).random().toLong()
+            finished = 1
             binding.starter.visibility = View.GONE;
-            object : CountDownTimer(2000, 1000) {
+            object : CountDownTimer(rnds, 1000) {
 
                 override fun onTick(millisUntilFinished: Long) {
 
@@ -32,37 +34,53 @@ class ReactionLayout : Fragment(R.layout.reaction_layout) {
 
                 override fun onFinish() {
                     // declare ImageView reference
+                    if(finished != 2) {
+                        binding.imager.setBackgroundColor(Color.GREEN)
+                        finished = 0;
+                        start = System.currentTimeMillis().toDouble()
+                    }
 
-                    binding.imager.setBackgroundColor(Color.GREEN)
-                    finished = 0;
-                    object : CountDownTimer(2000, 1) {
-
-                        override fun onTick(millisUntilFinished: Long) {
-                            sec = sec + 0.001
-                        }
-
-                        override fun onFinish() {
-
-                        }
-                    }.start()
 
                 }
             }.start()
         }
 
              binding.imager.setOnClickListener{
-                // Do nothing if nothing is checked (id == -1)\
+
+                 end = System.currentTimeMillis().toDouble()
                 if(finished == 0){
                     finished = 2
-                    reactiontimesec += sec
-                    val roundoff = (reactiontimesec * 1000.0).roundToInt() / 1000.0
-                    binding.textviewid.setText(roundoff.toString())
+                    attempt++
+                    reactiontimesec += end - start
+                    val averagereactiontime = reactiontimesec.roundToInt() / 1000.0
+                    binding.textviewid.setText(averagereactiontime.toString())
+                    if(attempt < 3){
+                        binding.starter.visibility = View.VISIBLE
+                        binding.imager.setBackgroundColor(Color.BLACK)
+                    }
+                    else{
+                        view.findNavController()
+                            .navigate(ReactionLayoutDirections
+                                .actionReactionLayoutToEndgame(averagereactiontime.toString()))
+                    }
 
 
                 }
-                if(!binding.imager.background.equals("GREEN")){
-                    reactiontimesec = reactiontimesec + 1
-
+                else if(finished != 0){
+                    finished = 2
+                    attempt++
+                    reactiontimesec += 1000.0
+                    val averagereactiontime = reactiontimesec.roundToInt() / 1000.0
+                    binding.textviewid.setText(averagereactiontime.toString())
+                    if(attempt < 3){
+                        binding.starter.visibility = View.VISIBLE
+                        binding.imager.setBackgroundColor(Color.BLACK)
+                    }
+                    else{
+                        view.findNavController()
+                            .navigate(ReactionLayoutDirections
+                                .actionReactionLayoutToEndgame(averagereactiontime.toString()))
+                    }
                 }
 
 
