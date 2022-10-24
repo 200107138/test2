@@ -36,7 +36,8 @@
             app:argType="string" />
     </fragment>
     <fragment
-        android:id="@+id/settings"
-        android:name="com.example.test.Settings"
-        android:label="Settings" />
+        android:id="@+id/rulesFragment"
+        android:name="com.example.test.RulesFragment"
+        android:label="fragment_rules"
+        tools:layout="@layout/fragment_rules" />
 </navigation>
