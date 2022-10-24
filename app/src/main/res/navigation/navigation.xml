@@ -35,4 +35,8 @@
             android:name="averagereactiontime"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/settings"
+        android:name="com.example.test.Settings"
+        android:label="Settings" />
 </navigation>
