@@ -2,34 +2,23 @@ package com.example.test
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import com.example.test.databinding.FragmentEndgameBinding
 
 
-class Endgame : Fragment() {
+class Endgame : Fragment(R.layout.fragment_endgame) {
+    private lateinit var binding: FragmentEndgameBinding
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = FragmentEndgameBinding.bind(view)
         val args = EndgameArgs.fromBundle(requireArguments())
+        binding.textViewId.setText("Average time: ${args.averagereactiontime}")
         Toast.makeText(context, "NumCorrect: ${args.averagereactiontime}", Toast.LENGTH_LONG).show()
-        return inflater.inflate(R.layout.fragment_endgame, container, false)
     }
+
+
 
 
 }

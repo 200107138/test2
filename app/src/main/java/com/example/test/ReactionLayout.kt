@@ -45,47 +45,47 @@ class ReactionLayout : Fragment(R.layout.reaction_layout) {
             }.start()
         }
 
-             binding.imager.setOnClickListener{
+        binding.imager.setOnClickListener{
 
-                 end = System.currentTimeMillis().toDouble()
-                if(finished == 0){
-                    finished = 2
-                    attempt++
-                    reactiontimesec += end - start
-                    val averagereactiontime = reactiontimesec.roundToInt() / 1000.0
-                    binding.textviewid.setText(averagereactiontime.toString())
-                    if(attempt < 3){
-                        binding.starter.visibility = View.VISIBLE
-                        binding.imager.setBackgroundColor(Color.BLACK)
-                    }
-                    else{
-                        view.findNavController()
-                            .navigate(ReactionLayoutDirections
-                                .actionReactionLayoutToEndgame(averagereactiontime.toString()))
-                    }
-
-
+            end = System.currentTimeMillis().toDouble()
+            if(finished == 0){
+                finished = 2
+                attempt++
+                reactiontimesec += end - start
+                val averagereactiontime = reactiontimesec.roundToInt() / 1000.0
+                binding.textviewid.setText(averagereactiontime.toString())
+                if(attempt < 3){
+                    binding.starter.visibility = View.VISIBLE
+                    binding.imager.setBackgroundColor(Color.BLACK)
                 }
-                else if(finished != 0){
-                    finished = 2
-                    attempt++
-                    reactiontimesec += 1000.0
-                    val averagereactiontime = reactiontimesec.roundToInt() / 1000.0
-                    binding.textviewid.setText(averagereactiontime.toString())
-                    if(attempt < 3){
-                        binding.starter.visibility = View.VISIBLE
-                        binding.imager.setBackgroundColor(Color.BLACK)
-                    }
-                    else{
-                        view.findNavController()
-                            .navigate(ReactionLayoutDirections
-                                .actionReactionLayoutToEndgame(averagereactiontime.toString()))
-                    }
+                else{
+                    view.findNavController()
+                        .navigate(ReactionLayoutDirections
+                            .actionReactionLayoutToEndgame(averagereactiontime.toString()))
                 }
 
 
             }
+            else if(finished != 0){
+                finished = 2
+                attempt++
+                reactiontimesec += 1000.0
+                val averagereactiontime = reactiontimesec.roundToInt() / 1000.0
+                binding.textviewid.setText(averagereactiontime.toString())
+                if(attempt < 3){
+                    binding.starter.visibility = View.VISIBLE
+                    binding.imager.setBackgroundColor(Color.BLACK)
+                }
+                else{
+                    view.findNavController()
+                        .navigate(ReactionLayoutDirections
+                            .actionReactionLayoutToEndgame(averagereactiontime.toString()))
+                }
+            }
 
 
         }
+
+
     }
+}
