@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".reaction_layout">
+    tools:context=".ReactionLayout">
 
     >
 
@@ -40,13 +40,15 @@
             android:gravity="center">
 
             <ImageView
+                android:id="@+id/imager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#FF0000">
+                android:background="@color/black">
 
             </ImageView>
 
             <Button
+                android:id="@+id/starter"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"

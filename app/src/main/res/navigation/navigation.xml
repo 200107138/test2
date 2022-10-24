@@ -16,11 +16,19 @@
     </fragment>
     <fragment
         android:id="@+id/reaction_layout"
-        android:name="com.example.test.reaction_layout"
+        android:name="com.example.test.ReactionLayout"
         android:label="reaction_layout"
         tools:layout="@layout/reaction_layout" >
         <action
             android:id="@+id/action_reaction_layout_to_home_layout"
             app:destination="@id/home_layout" />
+        <action
+            android:id="@+id/action_reaction_layout_to_endgame"
+            app:destination="@id/endgame" />
     </fragment>
+    <fragment
+        android:id="@+id/endgame"
+        android:name="com.example.test.Endgame"
+        android:label="fragment_endgame"
+        tools:layout="@layout/fragment_endgame" />
 </navigation>
