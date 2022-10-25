@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".settings">
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout2"
         android:layout_width="200dp"
         android:layout_height="120dp"
@@ -15,18 +15,25 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
         <TextView
+            android:id="@+id/textView"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="@string/app_name"
+            android:text="@string/select_name"
             android:textAlignment="center"
-            android:textSize="20dp"></TextView>
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></TextView>
 
         <ImageView
             android:layout_width="100dp"
-            android:layout_height="100dp"></ImageView>
-    </LinearLayout>
+            android:layout_height="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView"></ImageView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout4"
         android:layout_width="200dp"
         android:layout_height="120dp"
@@ -36,18 +43,27 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/textView6"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="@string/app_name"
+            android:text="@string/select_card"
             android:textAlignment="center"
-            android:textSize="20dp"></TextView>
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></TextView>
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"></ImageView>
-    </LinearLayout>
+            android:layout_width="50dp"
+            android:layout_height="80dp"
+            android:background="@drawable/icon_card"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6"></ImageView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout3"
         android:layout_width="200dp"
         android:layout_height="120dp"
@@ -57,18 +73,27 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/textView7"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="@string/app_name"
+            android:text="@string/select_photo"
             android:textAlignment="center"
-            android:textSize="20dp"></TextView>
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></TextView>
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"></ImageView>
-    </LinearLayout>
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/icon_photo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView7"></ImageView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout5"
         android:layout_width="200dp"
         android:layout_height="120dp"
@@ -78,16 +103,25 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
 
         <TextView
+            android:id="@+id/textView8"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="@string/app_name"
+            android:text="@string/select_nationality"
             android:textAlignment="center"
-            android:textSize="20dp"></TextView>
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></TextView>
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"></ImageView>
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:background="@drawable/icon_flag"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView8"></ImageView>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
