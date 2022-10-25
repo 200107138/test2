@@ -7,7 +7,7 @@
     android:layout_marginTop="15dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
-    app:cardBackgroundColor="#A2AA98"
+    app:cardBackgroundColor="#4DB5E4"
     >
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
