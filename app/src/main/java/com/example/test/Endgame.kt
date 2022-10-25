@@ -15,6 +15,7 @@ class Endgame : Fragment(R.layout.fragment_endgame) {
         binding = FragmentEndgameBinding.bind(view)
         val args = EndgameArgs.fromBundle(requireArguments())
         binding.textViewId.setText("Average time: ${args.averagereactiontime}")
+        val time = {args.averagereactiontime}
         Toast.makeText(context, "NumCorrect: ${args.averagereactiontime}", Toast.LENGTH_LONG).show()
     }
 

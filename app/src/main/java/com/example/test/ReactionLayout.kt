@@ -52,13 +52,14 @@ class ReactionLayout : Fragment(R.layout.reaction_layout) {
                 finished = 2
                 attempt++
                 reactiontimesec += end - start
-                val averagereactiontime = reactiontimesec.roundToInt()
+                var averagereactiontime = reactiontimesec.roundToInt()
                 binding.textviewid.setText(averagereactiontime.toString())
                 if(attempt < 3){
                     binding.starter.visibility = View.VISIBLE
                     binding.imager.setBackgroundColor(Color.BLACK)
                 }
                 else{
+                    averagereactiontime /= 3
                     view.findNavController()
                         .navigate(ReactionLayoutDirections
                             .actionReactionLayoutToEndgame(averagereactiontime.toString()))
@@ -70,13 +71,14 @@ class ReactionLayout : Fragment(R.layout.reaction_layout) {
                 finished = 2
                 attempt++
                 reactiontimesec += 1000.0
-                val averagereactiontime = reactiontimesec.roundToInt()
+                var averagereactiontime = reactiontimesec.roundToInt()
                 binding.textviewid.setText(averagereactiontime.toString())
                 if(attempt < 3){
                     binding.starter.visibility = View.VISIBLE
                     binding.imager.setBackgroundColor(Color.BLACK)
                 }
                 else{
+                    averagereactiontime /= 3
                     view.findNavController()
                         .navigate(ReactionLayoutDirections
                             .actionReactionLayoutToEndgame(averagereactiontime.toString()))

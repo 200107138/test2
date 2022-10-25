@@ -33,23 +33,33 @@ class MainActivity : AppCompatActivity() {
 
         NavigationUI.setupWithNavController(binding.navView, navController)
 
+
         switchOnOff = findViewById<SwitchCompat>(R.id.switchOnOff)
         tvSwitchYes = findViewById<TextView>(R.id.tvSwitchYes)
         tvSwitchNo = findViewById<TextView>(R.id.tvSwitchNo)
+        replaceFragment(settings())
         switchOnOff.setOnCheckedChangeListener { _, checked ->
             when {
                 checked -> {
                     tvSwitchYes.setTextColor(ContextCompat.getColor(this,R.color.blue))
                     tvSwitchNo.setTextColor(ContextCompat.getColor(this,R.color.white))
+                    replaceFragment(challenges())
                 }
                 else -> {
                     tvSwitchYes.setTextColor(ContextCompat.getColor(this,R.color.white))
                     tvSwitchNo.setTextColor(ContextCompat.getColor(this,R.color.blue))
+                    replaceFragment(settings())
                 }
             }
         }
     }
 
+    private fun replaceFragment(fragment: Fragment){
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.constraintLayout, fragment)
+        fragmentTransaction.commit()
+    }
     override fun onSupportNavigateUp(): Boolean {
         val navController = this.findNavController(R.id.fragment)
         return NavigationUI.navigateUp(navController, drawerLayout)

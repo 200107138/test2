@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".Homelayout">
 
-    >
 
     <ImageView
         android:id="@+id/imageView"
@@ -132,7 +131,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_centerVertical="true"
-                android:checked="true"
+                android:checked="false"
                 android:textColor="@color/white"
                 android:thumb="@drawable/thumb_selector"
                 app:track="@drawable/track_selector" />
@@ -152,7 +151,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Yes"
-                    android:textColor="#4282DC"
+                    android:textColor="@color/white"
                     android:textSize="20dp"  />
 
                 <TextView
@@ -163,7 +162,8 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="No"
-                    android:textColor="@color/white"
+                    android:textColor="#4282DC"
+
                     android:textSize="20dp"  />
 
 
@@ -173,93 +173,14 @@
         </RelativeLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="200dp"
-        android:layout_height="120dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-        android:orientation="vertical"
-        android:gravity="center">
-        <TextView
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textAlignment="center"
-            android:textSize="20dp"
-            >
-        </TextView>
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"></ImageView>
-    </LinearLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
-    <LinearLayout
-        android:id="@+id/linearLayout4"
-        android:layout_width="200dp"
-        android:layout_height="120dp"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        android:gravity="center"
-        >
 
-        <TextView
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textAlignment="center"
-            android:textSize="20dp"
-            >
-        </TextView>
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"></ImageView>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="200dp"
-        android:layout_height="120dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        android:gravity="center">
-
-        <TextView
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textAlignment="center"
-            android:textSize="20dp"
-            >
-        </TextView>
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"></ImageView>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout5"
-        android:layout_width="200dp"
-        android:layout_height="120dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
-        android:orientation="vertical"
-        android:gravity="center">
-        <TextView
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textAlignment="center"
-            android:textSize="20dp"
-            >
-        </TextView>
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"></ImageView>
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/textView3"
@@ -270,11 +191,12 @@
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
     </TextView>
 
     <LinearLayout
+        android:id="@+id/linearLayout6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
