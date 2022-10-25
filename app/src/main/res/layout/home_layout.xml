@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="200dp"
-        android:layout_height="300dp"
+        android:layout_width="180dp"
+        android:layout_height="260dp"
         android:background="@drawable/icon_card"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,8 +20,8 @@
     </ImageView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="180dp"
+        android:layout_height="160dp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,8 +29,8 @@
 
         <ImageView
             android:id="@+id/imageView2"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:background="@drawable/icon_photo">
@@ -42,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/score"
-            android:textSize="40dp"
+            android:textSize="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toTopOf="parent">
@@ -50,13 +50,13 @@
         </TextView>
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/rating_reaction_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
+            android:textSize="12dp"
 
-
-            android:text="@string/stats1"
+            android:text="@string/rating_reaction_time"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4">
 
@@ -65,14 +65,35 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:id="@+id/rating_memory"
             android:layout_marginEnd="8dp"
-            android:text="@string/stats2"
+            android:textSize="12dp"
+            android:text="@string/rating_memory"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5">
+            app:layout_constraintTop_toBottomOf="@+id/rating_reaction_time">
 
         </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rating_peripheral_vision"
+            android:layout_marginEnd="8dp"
+            android:textSize="12dp"
+            android:text="@string/rating_peripheral_vision"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rating_memory">
 
+        </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rating_aim"
+            android:layout_marginEnd="8dp"
+            android:text="@string/rating_aim"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rating_peripheral_vision">
+            android:textSize="12dp"
+        </TextView>
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="40dp"
@@ -89,7 +110,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:text="@string/name"
-            android:textSize="25dp"
+            android:textSize="20dp"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView3"
@@ -97,13 +118,22 @@
             app:layout_constraintVertical_bias="0.647"></TextView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <View
+        android:id="@+id/line"
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageView" />
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/app_name"
+        android:text="Card Design"
         android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@+id/imageView">
+        app:layout_constraintTop_toBottomOf="@+id/line">
 
     </TextView>
 
@@ -150,7 +180,7 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Yes"
+                    android:text="Settings"
                     android:textColor="@color/white"
                     android:textSize="20dp"  />
 
@@ -161,7 +191,7 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="No"
+                    android:text="Challenges"
                     android:textColor="#4282DC"
 
                     android:textSize="20dp"  />
@@ -176,22 +206,30 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="240dp"
+        android:layout_height="220dp"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
+    <View
+        android:id="@+id/line2"
+        android:layout_width="300dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/constraintLayout" />
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:text="@string/app_name"
+        android:text="Activity"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+        app:layout_constraintTop_toBottomOf="@+id/line2">
 
     </TextView>
 
@@ -211,7 +249,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/app_name"
+            android:text="Rating"
             android:textAlignment="center"
             android:textSize="20dp">
 
@@ -220,7 +258,11 @@
         <Button
             android:id="@+id/startbutton"
             android:layout_width="200dp"
-            android:layout_height="50dp">
+            android:layout_height="50dp"
+            android:background="#4282DC"
+            android:text="Define rating"
+            android:textColor="@color/white"
+            >
 
         </Button>
     </LinearLayout>

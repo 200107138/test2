@@ -30,7 +30,11 @@
     <string name="settings">Settings</string>
 
     <string name="select_card">Select Card</string>
-    <string name="select_name">Enter name</string>
+    <string name="select_sign">Sign</string>
     <string name="select_nationality">Nationality</string>
     <string name="select_photo">Photo</string>
+    <string name="rating_reaction_time">REACTION TIME</string>
+    <string name="rating_memory">MEMORY</string>
+    <string name="rating_peripheral_vision">PERIPHERAL VISION</string>
+    <string name="rating_aim">AIM</string>
 </resources>

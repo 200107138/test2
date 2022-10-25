@@ -8,7 +8,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout2"
         android:layout_width="200dp"
-        android:layout_height="120dp"
+        android:layout_height="100dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -18,7 +18,7 @@
             android:id="@+id/textView"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="@string/select_name"
+            android:text="@string/select_sign"
             android:textAlignment="center"
             android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -26,8 +26,10 @@
             app:layout_constraintTop_toTopOf="parent"></TextView>
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/ic_baseline_edit_24"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView"></ImageView>
@@ -36,7 +38,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout4"
         android:layout_width="200dp"
-        android:layout_height="120dp"
+        android:layout_height="100dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,9 +56,9 @@
             app:layout_constraintTop_toTopOf="parent"></TextView>
 
         <ImageView
-            android:layout_width="50dp"
-            android:layout_height="80dp"
-            android:background="@drawable/icon_card"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/ic_baseline_class_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -66,7 +68,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout3"
         android:layout_width="200dp"
-        android:layout_height="120dp"
+        android:layout_height="100dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -84,9 +86,9 @@
             app:layout_constraintTop_toTopOf="parent"></TextView>
 
         <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:background="@drawable/icon_photo"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/ic_baseline_person_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -96,7 +98,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout5"
         android:layout_width="200dp"
-        android:layout_height="120dp"
+        android:layout_height="100dp"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
@@ -114,9 +116,9 @@
             app:layout_constraintTop_toTopOf="parent"></TextView>
 
         <ImageView
-            android:layout_width="70dp"
-            android:layout_height="50dp"
-            android:background="@drawable/icon_flag"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/ic_baseline_flag_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
