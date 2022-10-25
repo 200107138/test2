@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 
 class RecyclerAdapter: RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
-    private var titles = arrayOf("Cgfgdf", "Cgfgdf", "Cgfgdf", "Cgfgdf")
-    private var details = arrayOf("Cgfgdf", "Cgfgdf", "Cgfgdf", "Cgfgdf")
-    private val images = intArrayOf(R.drawable.round_image, R.drawable.round_image, R.drawable.round_image, R.drawable.round_image)
+    private var titles = arrayOf("REACTION TIME", "MEMORY", "PERIPHERAL VISION", "AIM")
+    private var details = arrayOf("REACTION ON COLOR CHANGE", "FIND IDENTICAL CELLS", "FIND A LARGER NUMBER", "CLICK ON AIMS")
+    private val images = intArrayOf(R.drawable.icon_challenge, R.drawable.icon_challenge, R.drawable.icon_challenge, R.drawable.icon_challenge)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.card_layout, parent, false)
