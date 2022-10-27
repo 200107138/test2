@@ -39,10 +39,7 @@ class Homelayout : Fragment(R.layout.home_layout) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
-        var recyclerView: Button = view.findViewById(R.id.startbutton)
-        recyclerView.setOnClickListener {
-            Navigation.findNavController(view).navigate(R.id.action_home_layout_to_reaction_layout)
-        }
+
     }
 
 }
