@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Training"
+        android:id="@+id/fragment_training"
+        android:icon="@drawable/ic_baseline_gamepad_24"/>
+    <item android:title="Rating"
+        android:icon="@drawable/ic_baseline_data_saver_off_24"
+        android:id="@+id/fragment_rating"/>
+</menu>

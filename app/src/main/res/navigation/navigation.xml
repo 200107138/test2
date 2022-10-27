@@ -3,41 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/home_layout">
+    app:startDestination="@id/fragment_training">
 
     <fragment
-        android:id="@+id/home_layout"
-        android:name="com.example.test.Homelayout"
-        android:label="home_layout"
-        tools:layout="@layout/home_layout" >
-        <action
-            android:id="@+id/action_home_layout_to_reaction_layout"
-            app:destination="@id/reaction_layout" />
+        android:id="@+id/fragment_training"
+        android:name="com.example.test.TrainingFragment"
+        android:label="fragment_training"
+        tools:layout="@layout/fragment_training">
+
     </fragment>
     <fragment
-        android:id="@+id/reaction_layout"
-        android:name="com.example.test.ReactionLayout"
-        android:label="reaction_layout"
-        tools:layout="@layout/reaction_layout" >
-        <action
-            android:id="@+id/action_reaction_layout_to_home_layout"
-            app:destination="@id/home_layout" />
-        <action
-            android:id="@+id/action_reaction_layout_to_endgame"
-            app:destination="@id/endgame" />
-    </fragment>
-    <fragment
-        android:id="@+id/endgame"
-        android:name="com.example.test.Endgame"
-        android:label="fragment_endgame"
-        tools:layout="@layout/fragment_endgame" >
-        <argument
-            android:name="averagereactiontime"
-            app:argType="string" />
-    </fragment>
-    <fragment
-        android:id="@+id/rulesFragment"
-        android:name="com.example.test.RulesFragment"
-        android:label="fragment_rules"
-        tools:layout="@layout/fragment_rules" />
+        android:id="@+id/fragment_rating"
+        android:name="com.example.test.RatingFragment"
+        android:label="fragment_rating"
+        tools:layout="@layout/fragment_rating" />
+
 </navigation>
