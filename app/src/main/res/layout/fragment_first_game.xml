@@ -5,61 +5,36 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FirstGameFragment">
+    tools:context=".FirstGameFragment"
+    android:background="#FDFDFD">
 
-
-
-
-    <LinearLayout
-        android:id="@+id/lay"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/first_game_text"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/hello"
+        android:textAlignment="center"
+        android:textSize="40dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/firstgamestarttext"
+        android:layout_width="350dp"
+        android:layout_height="550dp"
+        android:background="@drawable/first_game_background"
+        android:elevation="15dp"
+        android:gravity="center"
+        android:text="Start"
+        android:textSize="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/first_game_text" />
 
 
-        <TextView
-            android:id="@+id/textviewid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/hello"
-            android:textAlignment="center"
-            android:textSize="40dp" />
 
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="500dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp"
-            android:gravity="center">
-
-            <ImageView
-                android:id="@+id/imager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/black">
-
-            </ImageView>
-
-            <Button
-                android:id="@+id/starter"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/transparent"
-                android:text="@string/start_button"
-                android:textColor="@color/white"
-                android:textSize="50dp">
-
-            </Button>
-        </RelativeLayout>
-
-    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

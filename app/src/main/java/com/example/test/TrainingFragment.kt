@@ -3,6 +3,8 @@ package com.example.test
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+
 import com.example.test.databinding.FragmentTrainingBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -22,16 +24,15 @@ class TrainingFragment : Fragment(R.layout.fragment_training) {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_training, container, false)
-    }
+        binding = FragmentTrainingBinding.inflate(inflater, container, false)
 
+        binding.firstGameLauncher.setOnClickListener { view : View ->
+            view.findNavController().navigate(TrainingFragmentDirections.actionTrainingFragmentToFirstGameFragment())
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setHasOptionsMenu(true)
+        }
+        return binding.root
     }
 
 

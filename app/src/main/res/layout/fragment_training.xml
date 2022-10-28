@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FDFDFD"
     tools:context=".TrainingFragment">
 
 
@@ -18,12 +19,13 @@
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/first_game_launcher"
                 android:layout_width="300dp"
                 android:layout_height="100dp"
                 android:layout_gravity="center"
                 android:layout_margin="16dp"
                 app:cardCornerRadius="10dp"
-                app:cardElevation="2dp">
+                app:cardElevation="15dp">
 
 
 
@@ -35,7 +37,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="16dp"
                 app:cardCornerRadius="10dp"
-                app:cardElevation="2dp">
+                app:cardElevation="15dp">
 
 
             </androidx.cardview.widget.CardView>
@@ -46,7 +48,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="16dp"
                 app:cardCornerRadius="10dp"
-                app:cardElevation="2dp">
+                app:cardElevation="15dp">
 
 
 

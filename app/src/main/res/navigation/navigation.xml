@@ -11,11 +11,19 @@
         android:label="fragment_training"
         tools:layout="@layout/fragment_training">
 
+        <action
+            android:id="@+id/action_trainingFragment_to_firstGameFragment"
+            app:destination="@id/fragment_first_game" />
     </fragment>
     <fragment
         android:id="@+id/fragment_rating"
         android:name="com.example.test.RatingFragment"
         android:label="fragment_rating"
         tools:layout="@layout/fragment_rating" />
+    <fragment
+        android:id="@+id/fragment_first_game"
+        android:name="com.example.test.FirstGameFragment"
+        android:label="fragment_first_game"
+        tools:layout="@layout/fragment_first_game" />
 
 </navigation>
