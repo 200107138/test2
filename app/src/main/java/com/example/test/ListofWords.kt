@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.android.unscramble.ui.game
+package com.example.test
 
 
 const val MAX_NO_OF_WORDS = 3

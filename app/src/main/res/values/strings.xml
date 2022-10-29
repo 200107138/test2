@@ -37,4 +37,10 @@
     <string name="rating_memory">MEMORY</string>
     <string name="rating_peripheral_vision">PERIPHERAL VISION</string>
     <string name="rating_aim">AIM</string>
+
+    <string name="congratulations">Congratulations!</string>
+    <string name="you_scored">"You scored: %d"</string>
+    <string name="exit">Exit</string>
+    <string name="play_again">Play Again</string>
+    <string name="try_again">Try again!</string>
 </resources>
