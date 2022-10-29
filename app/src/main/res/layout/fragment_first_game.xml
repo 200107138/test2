@@ -5,37 +5,48 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".FirstGameFragment"
     android:background="#FDFDFD">
+
+    <TextView
+        android:id="@+id/firstgamecount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/first_game_round_count"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/first_game_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="30dp"
         android:text="@string/hello"
         android:textAlignment="center"
         android:textSize="40dp"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/firstgamecount" />
 
     <TextView
         android:id="@+id/firstgamestarttext"
-        android:layout_width="350dp"
-        android:layout_height="550dp"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
         android:background="@drawable/first_game_start"
-        android:tag="white"
-        android:elevation="15dp"
         android:gravity="center"
+
+        android:padding="16dp"
+        android:tag="white"
         android:text="Start"
         android:textSize="100dp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/first_game_text" />
-
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

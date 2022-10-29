@@ -99,9 +99,15 @@ private lateinit var timer: CountDownTimer
 
     private fun showFinalScoreDialog() {
         MaterialAlertDialogBuilder(requireContext())
-            .setTitle("rtgrtgtr")
-            .setMessage("rthrthtrht")
-
+            .setTitle(getString(R.string.first_game_result))
+            .setMessage(getString(R.string.average_time, viewModel.averagereactiontime))
+            .setCancelable(false)
+            .setNegativeButton(getString(R.string.exit)) { _, _ ->
+                exitGame()
+            }
+            .setPositiveButton(getString(R.string.play_again)) { _, _ ->
+                restartGame()
+            }
             .show()
     }
 
