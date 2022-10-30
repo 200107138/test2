@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         NavigationUI.setupWithNavController(binding.bottomBar, navController)
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if(destination.id == R.id.fragment_first_game) {
+            if(destination.id == R.id.fragment_first_game || destination.id == R.id.fragment_second_game) {
 
                 binding.bottomBar.visibility = View.GONE
             } else {

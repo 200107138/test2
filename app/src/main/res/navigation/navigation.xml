@@ -15,6 +15,10 @@
             android:id="@+id/action_trainingFragment_to_firstGameFragment"
             app:destination="@id/fragment_first_game"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_fragment_training_to_secondGameFragment"
+            app:destination="@id/fragment_second_game"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/fragment_rating"
@@ -32,5 +36,10 @@
             app:destination="@id/fragment_training"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/fragment_second_game"
+        android:name="com.example.test.SecondGameFragment"
+        android:label="fragment_second_game"
+        tools:layout="@layout/fragment_second_game" />
 
 </navigation>
