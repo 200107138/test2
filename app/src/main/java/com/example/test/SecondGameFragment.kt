@@ -1,59 +1,114 @@
 package com.example.test
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.example.test.databinding.FragmentSecondGameBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [SecondGameFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class SecondGameFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private val viewModel: SecondGameViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentSecondGameBinding
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_second_game, container, false)
+    ): View {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_second_game, container, false)
+        binding.gameViewModel = viewModel
+
+        binding.maxNoOfWords = MAX_NO_OF_WORDS
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SecondGameFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SecondGameFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.startSecondGame.setOnClickListener {
+
+            onClickStart()
+
+        }
+        binding.secondGameNumber1.setOnClickListener {
+
+            onClick1Button()
+
+        }
+        binding.secondGameNumber2.setOnClickListener {
+
+            onClick2Button()
+
+        }
+        binding.lifecycleOwner = viewLifecycleOwner
+    }
+
+    private fun onClickStart() {
+
+        if (viewModel.startGame()) {
+
+        } else {
+            showFinalScoreDialog()
+        }
+
+    }
+
+    private fun onClick1Button() {
+
+        if (viewModel.nextGame1()) {
+
+                Toast.makeText(context, viewModel.reactiontime.toString(), Toast.LENGTH_LONG)
+                    .show()
+
+        } else {
+            showFinalScoreDialog()
+        }
+
+    }
+
+    private fun onClick2Button() {
+
+        if (viewModel.nextGame2()) {
+
+                Toast.makeText(context, viewModel.reactiontime.toString(), Toast.LENGTH_LONG)
+                    .show()
+
+        } else {
+            showFinalScoreDialog()
+        }
+
+    }
+
+    private fun showFinalScoreDialog() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(getString(R.string.first_game_result))
+            .setMessage(getString(R.string.average_time, viewModel.averagereactiontime.value))
+            .setCancelable(false)
+            .setNegativeButton(getString(R.string.exit)) { _, _ ->
+                exitGame()
             }
+            .setPositiveButton(getString(R.string.play_again)) { _, _ ->
+                restartGame()
+            }
+            .show()
+    }
+
+    private fun exitGame() {
+        findNavController().navigate(R.id.action_fragment_second_game_to_fragment_training)
+    }
+
+    private fun restartGame() {
+        viewModel.reinitializeData()
+
     }
 }

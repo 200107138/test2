@@ -40,6 +40,10 @@
         android:id="@+id/fragment_second_game"
         android:name="com.example.test.SecondGameFragment"
         android:label="fragment_second_game"
-        tools:layout="@layout/fragment_second_game" />
+        tools:layout="@layout/fragment_second_game" >
+        <action
+            android:id="@+id/action_fragment_second_game_to_fragment_training"
+            app:destination="@id/fragment_training" />
+    </fragment>
 
 </navigation>

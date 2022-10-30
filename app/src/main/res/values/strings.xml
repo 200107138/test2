@@ -37,11 +37,12 @@
     <string name="rating_memory">MEMORY</string>
     <string name="rating_peripheral_vision">PERIPHERAL VISION</string>
     <string name="rating_aim">AIM</string>
-
+    <string name="empty"></string>
     <string name="first_game_result">Result</string>
     <string name="average_time">"Average Reaction Time: %d milliseconds"</string>
     <string name="exit">Go to menu</string>
     <string name="play_again">Play Again</string>
     <string name="try_again">Try again!</string>
+    <string name="start">Start</string>
     <string name="first_game_round_count">Round %d of %d</string>
 </resources>
