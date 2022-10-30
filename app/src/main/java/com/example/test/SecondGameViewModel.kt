@@ -72,7 +72,7 @@ class SecondGameViewModel : ViewModel(){
                 _currentSecondGameCount.value = (_currentSecondGameCount.value)?.inc()
                 _reactiontime = end - start
                 _averagereactiontime.value =
-                    _averagereactiontime.value?.plus((_reactiontime / MAX_NO_OF_WORDS))
+                    _averagereactiontime.value?.plus((_reactiontime / ROUNDS))
                 timer()
                 timer.start()
             }
@@ -82,7 +82,7 @@ class SecondGameViewModel : ViewModel(){
                 _currentSecondGameCount.value = (_currentSecondGameCount.value)?.inc()
                 _reactiontime = 1000
                 _averagereactiontime.value =
-                    _averagereactiontime.value?.plus((_reactiontime / MAX_NO_OF_WORDS))
+                    _averagereactiontime.value?.plus((_reactiontime / ROUNDS))
                 timer()
                 timer.start()
            }
@@ -98,7 +98,7 @@ class SecondGameViewModel : ViewModel(){
                 _currentSecondGameCount.value = (_currentSecondGameCount.value)?.inc()
                 _reactiontime = end - start
                 _averagereactiontime.value =
-                    _averagereactiontime.value?.plus((_reactiontime / MAX_NO_OF_WORDS))
+                    _averagereactiontime.value?.plus((_reactiontime / ROUNDS))
                 timer()
                 timer.start()
             }
@@ -108,7 +108,7 @@ class SecondGameViewModel : ViewModel(){
                 _currentSecondGameCount.value = (_currentSecondGameCount.value)?.inc()
                 _reactiontime = 1000
                 _averagereactiontime.value =
-                    _averagereactiontime.value?.plus((_reactiontime / MAX_NO_OF_WORDS))
+                    _averagereactiontime.value?.plus((_reactiontime / ROUNDS))
                 timer()
                 timer.start()
             }
@@ -163,7 +163,7 @@ class SecondGameViewModel : ViewModel(){
     }
 
     fun nextGame1(): Boolean {
-        return if(_currentSecondGameCount.value!! < MAX_NO_OF_WORDS) {
+        return if(_currentSecondGameCount.value!! < ROUNDS) {
             button1clicked()
             true
         }else false
@@ -171,7 +171,7 @@ class SecondGameViewModel : ViewModel(){
     }
     fun nextGame2(): Boolean {
 
-        return if(_currentSecondGameCount.value!! < MAX_NO_OF_WORDS) {
+        return if(_currentSecondGameCount.value!! < ROUNDS) {
             button2clicked()
             true
         }else false
@@ -179,6 +179,6 @@ class SecondGameViewModel : ViewModel(){
 
     fun startGame(): Boolean {
         getNextGame()
-        return _currentSecondGameCount.value!! < MAX_NO_OF_WORDS
+        return _currentSecondGameCount.value!! < ROUNDS
     }
 }

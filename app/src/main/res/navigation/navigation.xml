@@ -43,7 +43,8 @@
         tools:layout="@layout/fragment_second_game" >
         <action
             android:id="@+id/action_fragment_second_game_to_fragment_training"
-            app:destination="@id/fragment_training" />
+            app:destination="@id/fragment_training"
+            app:popUpToInclusive="true" />
     </fragment>
 
 </navigation>

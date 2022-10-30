@@ -27,7 +27,7 @@ class SecondGameFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_second_game, container, false)
         binding.gameViewModel = viewModel
 
-        binding.maxNoOfWords = MAX_NO_OF_WORDS
+        binding.maxNoOfWords = ROUNDS
 
         return binding.root
     }

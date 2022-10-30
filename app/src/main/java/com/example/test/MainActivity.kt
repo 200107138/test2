@@ -20,9 +20,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val navController = this.findNavController(R.id.fragmentContainerView)
-        val appBarConfiguration = AppBarConfiguration(setOf(R.id.fragment_training, R.id.fragment_rating, R.id.fragment_first_game))
-        setupActionBarWithNavController(navController, appBarConfiguration)
+
         NavigationUI.setupWithNavController(binding.bottomBar, navController)
+        binding.includedLayout.title.setText("Game mode")
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if(destination.id == R.id.fragment_first_game || destination.id == R.id.fragment_second_game) {
 

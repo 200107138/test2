@@ -58,7 +58,7 @@ class FirstGameViewModel : ViewModel(){
             _currentTag = "white"
             _starttext.value = "Start"
             _background.value = false
-            _averagereactiontime.value = _averagereactiontime.value?.plus((_reactiontime / MAX_NO_OF_WORDS))
+            _averagereactiontime.value = _averagereactiontime.value?.plus((_reactiontime / ROUNDS))
             _currentFirstGameCount.value = (_currentFirstGameCount.value)?.inc()
 
 
@@ -80,7 +80,7 @@ class FirstGameViewModel : ViewModel(){
             _starttext.value = "Start"
             _background.value = false
             _averagereactiontime.value =
-                _averagereactiontime.value?.plus((_reactiontime / MAX_NO_OF_WORDS))
+                _averagereactiontime.value?.plus((_reactiontime / ROUNDS))
             _currentFirstGameCount.value = (_currentFirstGameCount.value)?.inc()
 
         }
@@ -116,6 +116,6 @@ class FirstGameViewModel : ViewModel(){
 
     fun nextGame(): Boolean {
         getNextGame()
-        return _currentFirstGameCount.value!! < MAX_NO_OF_WORDS
+        return _currentFirstGameCount.value!! < ROUNDS
     }
 }

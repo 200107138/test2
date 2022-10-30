@@ -23,7 +23,7 @@
         android:id="@+id/firstgamecount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@{@string/first_game_round_count(gameViewModel.currentFirstGameCount, maxNoOfWords)}"
+        android:text="@{@string/game_round_count(gameViewModel.currentFirstGameCount, maxNoOfWords)}"
         android:textAlignment="center"
         android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"

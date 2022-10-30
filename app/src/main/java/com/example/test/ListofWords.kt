@@ -17,7 +17,6 @@
 package com.example.test
 
 
-const val MAX_NO_OF_WORDS = 3
-const val SCORE_INCREASE = 20
+const val ROUNDS = 3
 
 // List with all the words for the Game
