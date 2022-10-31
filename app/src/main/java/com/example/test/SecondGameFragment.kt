@@ -58,9 +58,10 @@ class SecondGameFragment : Fragment() {
     private fun onClick1Button() {
 
         if (viewModel.nextGame1()) {
-
-                Toast.makeText(context, viewModel.reactiontime.toString(), Toast.LENGTH_LONG)
+            if(viewModel.reactiontime == 1000) {
+                Toast.makeText(context, "Penalty! +1s", Toast.LENGTH_LONG)
                     .show()
+            }
 
         } else {
             showFinalScoreDialog()
@@ -71,9 +72,10 @@ class SecondGameFragment : Fragment() {
     private fun onClick2Button() {
 
         if (viewModel.nextGame2()) {
-
-                Toast.makeText(context, viewModel.reactiontime.toString(), Toast.LENGTH_LONG)
+            if(viewModel.reactiontime == 1000) {
+                Toast.makeText(context, "Penalty! +1s", Toast.LENGTH_LONG)
                     .show()
+            }
 
         } else {
             showFinalScoreDialog()

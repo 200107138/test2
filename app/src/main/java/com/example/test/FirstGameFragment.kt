@@ -49,8 +49,8 @@ class FirstGameFragment : Fragment() {
     private fun onClickStart() {
 
             if (viewModel.nextGame()) {
-                if(viewModel.currentTag == "white" && !viewModel.clicked) {
-                    Toast.makeText(context, viewModel.reactiontime.toString(), Toast.LENGTH_LONG)
+                if(viewModel.reactiontime == 1000 && !viewModel.clicked) {
+                    Toast.makeText(context, "Penalty! +1s", Toast.LENGTH_LONG)
                         .show()
                 }
             }
