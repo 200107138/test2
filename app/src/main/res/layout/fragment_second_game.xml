@@ -33,9 +33,9 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:visibility="@{gameViewModel.clicked ?  View.GONE : View.VISIBLE}"
         android:text="@string/second_game_description"
-
+        android:padding="16dp"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,8 +43,8 @@
 
     <TextView
         android:id="@+id/second_game_number1"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:text="@{gameViewModel.firstnumber == 0 ? @string/empty : gameViewModel.firstnumber.toString()}"
         android:gravity="center"
         android:textSize="50dp"
@@ -67,8 +67,8 @@
 
     <TextView
         android:id="@+id/second_game_number2"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:text="@{gameViewModel.secondnumber == 0 ?  @string/empty : gameViewModel.secondnumber.toString()}"
         android:gravity="center"
         android:textSize="50dp"
