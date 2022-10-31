@@ -37,7 +37,7 @@ class SecondGameFragment : Fragment() {
 
         binding.startSecondGame.setOnClickListener {
 
-            onClickStart()
+            viewModel.startGame()
 
         }
         binding.secondGameNumber1.setOnClickListener {
@@ -53,15 +53,7 @@ class SecondGameFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
     }
 
-    private fun onClickStart() {
 
-        if (viewModel.startGame()) {
-
-        } else {
-            showFinalScoreDialog()
-        }
-
-    }
 
     private fun onClick1Button() {
 

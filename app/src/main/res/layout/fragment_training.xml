@@ -31,27 +31,47 @@
                     android:layout_height="match_parent">
 
                     <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="36dp"
+                        android:layout_marginTop="10dp"
+                        android:text="REACTION ON COLOR CHANGE"
+                        android:textColor="#9A9A9A"
+
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/imageView"
+
+
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        ></TextView>
+
+                    <TextView
+                        android:id="@+id/textView2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="REACTION TIME"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="1. REACTION TIME"
+
                         android:textColor="#9A9A9A"
+                        android:textSize="20dp"
                         android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"></TextView>
 
                     <ImageView
-
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
+                        android:id="@+id/imageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        android:background="@drawable/icon_challenge"
+                        android:background="@drawable/ic_baseline_history_24"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                    </ImageView>
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -70,27 +90,47 @@
                     android:layout_height="match_parent">
 
                     <TextView
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="36dp"
+                        android:layout_marginTop="10dp"
+                        android:text="FIND A LARGER NUMBER"
+                        android:textColor="#9A9A9A"
+
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/second_game_history"
+
+
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        ></TextView>
+
+                    <TextView
+                        android:id="@+id/second_game_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="PERIPHERAL VISION"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:text="2. PERIPHERAL VISION"
+
                         android:textColor="#9A9A9A"
+                        android:textSize="20dp"
                         android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"></TextView>
 
                     <ImageView
-
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
+                        android:id="@+id/second_game_history"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        android:background="@drawable/icon_challenge"
+                        android:background="@drawable/ic_baseline_history_24"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                    </ImageView>
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
@@ -119,18 +159,7 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"></TextView>
 
-                        <ImageView
 
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
-                            android:layout_margin="10dp"
-                            android:background="@drawable/icon_challenge"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                        </ImageView>
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -158,18 +187,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"></TextView>
 
-                    <ImageView
 
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_margin="10dp"
-                        android:background="@drawable/icon_challenge"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                    </ImageView>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
