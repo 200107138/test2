@@ -7,4 +7,7 @@
     <item android:title="Rating"
         android:icon="@drawable/ic_baseline_data_saver_off_24"
         android:id="@+id/fragment_rating"/>
+    <item android:title="Settings"
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:id="@+id/fragment_settings"/>
 </menu>

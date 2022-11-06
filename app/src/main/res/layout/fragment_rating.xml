@@ -7,195 +7,102 @@
     android:background="#FDFDFD"
     tools:context=".RatingFragment">
 
-
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:indeterminateOnly="false"
-        android:progress="60"
-
-
-        android:progressDrawable="@drawable/circle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/text_view_progress"
-        android:layout_width="wrap_content"
-        android:textSize="80dp"
-        android:textColor="#434343"
-        android:textStyle="bold"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toBottomOf="@+id/progress_bar"
-        app:layout_constraintEnd_toEndOf="@+id/progress_bar"
-        app:layout_constraintStart_toStartOf="@+id/progress_bar"
-        app:layout_constraintTop_toTopOf="@+id/progress_bar"
-        android:text="60" />
-
-    <HorizontalScrollView
-        android:id="@+id/horizontalScrollView"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progress_bar">
+        android:layout_height="300dp"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-        <LinearLayout
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="150dp"
+                    android:layout_margin="16dp"
+                    app:cardCornerRadius="16dp"
+                    android:layout_height="150dp">
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ProgressBar
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="10dp"
+                            android:layout_margin="16dp"
+                            tools:progress="34"
+                            android:progressDrawable="@drawable/circle"
+                            app:layout_constraintBottom_toBottomOf="parent">
+
+                        </ProgressBar>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="150dp"
+                    app:cardCornerRadius="16dp"
+                    android:layout_margin="16dp"
+                    android:layout_height="150dp">
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="150dp"
+                    android:layout_margin="16dp"
+                    app:cardCornerRadius="16dp"
+                    android:layout_height="150dp">
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <Button
+            android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_margin="16dp"
+            android:text="DEFINE RATING"
+            android:textColor="@color/white"
+            android:background="@drawable/rating_button_style"
+            app:layout_constraintBottom_toBottomOf="parent">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_margin="16dp"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="5dp">
+        </Button>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Reaction Time"
-                        android:textAlignment="center"
-                        android:textColor="#9A9A9A"
-                        android:textStyle="bold"
-                  ></TextView>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="292"
-                        android:textSize="40dp"
-                        android:textColor="#434343"
-                        android:textStyle="bold"></TextView>
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_margin="16dp"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="5dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Periphial Vision"
-                        android:textAlignment="center"
-                        android:textColor="#9A9A9A"
-                        android:textStyle="bold"></TextView>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="392"
-                        android:textSize="40dp"
-                        android:textColor="#434343"
-                        android:textStyle="bold"></TextView>
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_margin="16dp"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="5dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Reaction Time"
-                        android:textAlignment="center"
-                        android:textColor="#9A9A9A"
-                        android:textStyle="bold"></TextView>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="192"
-                        android:textSize="40dp"
-                        android:textColor="#434343"
-                        android:textStyle="bold"></TextView>
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_margin="16dp"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="5dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Reaction Time"
-                        android:textAlignment="center"
-                        android:textColor="#9A9A9A"
-                        android:textStyle="bold"></TextView>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="992"
-                        android:textSize="40dp"
-                        android:textColor="#434343"
-                        android:textStyle="bold"></TextView>
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>
-    </HorizontalScrollView>
-
-    <Button
-        android:id="@+id/button"
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:background="@drawable/rating_button_style"
-        android:text="Define Rating"
-        android:textColor="@color/white"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="300dp"
+        android:background="@drawable/image"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"></ImageView>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="43"
+        android:textSize="70dp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView">
+        app:layout_constraintTop_toTopOf="@+id/imageView">
 
-    </Button>
+    </TextView>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_baseline_arrow_upward_24"
+
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toTopOf="@+id/textView2">
+
+    </TextView>
 </androidx.constraintlayout.widget.ConstraintLayout>

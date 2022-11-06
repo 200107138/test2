@@ -22,7 +22,6 @@ class MainActivity : AppCompatActivity() {
         val navController = this.findNavController(R.id.fragmentContainerView)
 
         NavigationUI.setupWithNavController(binding.bottomBar, navController)
-        binding.includedLayout.title.setText("Game mode")
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if(destination.id == R.id.fragment_first_game || destination.id == R.id.fragment_second_game) {
 
