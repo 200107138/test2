@@ -69,6 +69,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:text="DEFINE RATING"
+            android:fontFamily="@font/mavenprobold"
             android:textColor="@color/white"
             android:background="@drawable/rating_button_style"
             app:layout_constraintBottom_toBottomOf="parent">
@@ -82,13 +83,15 @@
         android:layout_height="300dp"
         android:background="@drawable/image"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintEnd_toEndOf="parent"></ImageView>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></ImageView>
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="43"
+        android:text="49"
+        android:fontFamily="@font/mavenproregular"
         android:textSize="70dp"
         app:layout_constraintEnd_toStartOf="@+id/imageView"
         app:layout_constraintStart_toStartOf="parent"
