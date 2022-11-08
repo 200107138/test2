@@ -11,6 +11,9 @@
     <variable
         name="maxNoOfWords"
         type="int" />
+    <variable
+        name="rounds"
+        type="com.example.test.ListofWordsKt" />
 </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:orientation="vertical"
@@ -23,7 +26,8 @@
         android:id="@+id/firstgamecount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@{@string/game_round_count(gameViewModel.currentFirstGameCount, maxNoOfWords)}"
+
+        android:text="@{gameViewModel.currentFirstGameCount != rounds.ROUNDS + 1? @string/game_round_count(gameViewModel.currentFirstGameCount, maxNoOfWords) : @string/game_round_count(rounds.ROUNDS, maxNoOfWords)}"
         android:textAlignment="center"
         android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"

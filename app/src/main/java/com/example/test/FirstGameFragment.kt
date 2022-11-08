@@ -49,7 +49,7 @@ class FirstGameFragment : Fragment() {
     private fun onClickStart() {
 
             if (viewModel.nextGame()) {
-                if(viewModel.reactiontime == 1000 && !viewModel.clicked) {
+                if(viewModel.reactiontime == 1000) {
                     Toast.makeText(context, "Penalty! +1s", Toast.LENGTH_LONG)
                         .show()
                 }

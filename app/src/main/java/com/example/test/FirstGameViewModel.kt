@@ -50,38 +50,43 @@ class FirstGameViewModel : ViewModel(){
 
 
         if(_currentTag == "green") {
-            _clicked = !_clicked
-            timer()
+            _currentTag = "white"
+            _background.value = false
             timer.cancel()
+            timer()
+            timer.start()
             _end = System.currentTimeMillis().toInt()
             _reactiontime = end - start
-            _currentTag = "white"
-            _starttext.value = "Start"
-            _background.value = false
+
+
+
             _averagereactiontime.value = _averagereactiontime.value?.plus((_reactiontime / ROUNDS))
             _currentFirstGameCount.value = (_currentFirstGameCount.value)?.inc()
-
+            if(_currentFirstGameCount.value!! > ROUNDS){
+                timer.cancel()
+            }
 
         }
         else if(_currentTag == "white" && !clicked){
             _clicked = !_clicked
             timer()
             timer.start()
-
             _starttext.value = ""
 
         }
         else if(_currentTag == "white" && clicked) {
-            timer()
-            timer.cancel()
-            _end = System.currentTimeMillis().toInt()
-            _clicked = !_clicked
-            _reactiontime = 1000
-            _starttext.value = "Start"
             _background.value = false
+            timer.cancel()
+            timer()
+            timer.start()
+            _reactiontime = 1000
+
             _averagereactiontime.value =
                 _averagereactiontime.value?.plus((_reactiontime / ROUNDS))
             _currentFirstGameCount.value = (_currentFirstGameCount.value)?.inc()
+            if(_currentFirstGameCount.value!! > ROUNDS){
+                timer.cancel()
+            }
 
         }
 
@@ -93,7 +98,7 @@ class FirstGameViewModel : ViewModel(){
             }
 
             override fun onFinish() {
-                if(_currentTag == "white" && clicked){
+                if(_currentTag == "white"){
                     _currentTag = "green"
                     _start = System.currentTimeMillis().toInt()
                     _background.value = true
@@ -110,12 +115,15 @@ class FirstGameViewModel : ViewModel(){
         _start = 0
         _currentTag = "white"
         _end = 0
+        _background.value = false
+        _clicked = false
+        _starttext.value = "Start"
         _reactiontime = 0
         _averagereactiontime.value = 0
     }
 
     fun nextGame(): Boolean {
         getNextGame()
-        return _currentFirstGameCount.value!! < ROUNDS
+        return _currentFirstGameCount.value!! <= ROUNDS
     }
 }
