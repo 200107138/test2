@@ -59,7 +59,7 @@ class SecondGameViewModel : ViewModel(){
     private fun getNextGame() {
         _clicked.value = true
         _starttext.value = ""
-       timer()
+        timer()
         timer.start()
     }
     fun button1clicked(){
@@ -76,7 +76,7 @@ class SecondGameViewModel : ViewModel(){
                 timer()
                 timer.start()
             }
-           else{
+            else{
                 _randomfirstnumber = 0
                 _randomsecondnumber = 0
                 _currentSecondGameCount.value = (_currentSecondGameCount.value)?.inc()
@@ -85,7 +85,7 @@ class SecondGameViewModel : ViewModel(){
                     _averagereactiontime.value?.plus((_reactiontime / ROUNDS))
                 timer()
                 timer.start()
-           }
+            }
         }
     }
     fun button2clicked(){
