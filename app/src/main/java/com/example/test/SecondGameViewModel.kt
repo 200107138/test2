@@ -1,13 +1,35 @@
 package com.example.test
 
+import android.app.Application
 import android.graphics.drawable.Drawable
 import android.os.CountDownTimer
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
-class SecondGameViewModel : ViewModel(){
+class SecondGameViewModel(application: Application): AndroidViewModel(application){
+
+    val readAllData: LiveData<List<User>>
+    private val repository: UserRepository
+
+    init {
+        val userDao = UserDatabase.getDatabase(application).userDao()
+        repository = UserRepository(userDao)
+        readAllData = repository.readAllData
+    }
+
+    fun addUser(user: User){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.addUser(user)
+        }
+    }
+    fun deleteUser(user: User){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteUser(user)
+        }
+    }
+
     private lateinit var timer: CountDownTimer
     private lateinit var timer2: CountDownTimer
 
@@ -161,12 +183,21 @@ class SecondGameViewModel : ViewModel(){
         _averagereactiontime.value = 0
         _starttext.value = "Start"
     }
+    fun davai(){
+        val user = User(0, "firstNaytme", "latystName", 3)
+        // Add Data to Database
+        addUser(user)
+    }
 
     fun nextGame1(): Boolean {
         return if(_currentSecondGameCount.value!! < ROUNDS) {
             button1clicked()
             true
-        }else false
+        }else {
+            davai()
+            false
+        }
+
 
     }
     fun nextGame2(): Boolean {
@@ -174,7 +205,10 @@ class SecondGameViewModel : ViewModel(){
         return if(_currentSecondGameCount.value!! < ROUNDS) {
             button2clicked()
             true
-        }else false
+        }else {
+            davai()
+            false
+        }
     }
 
     fun startGame(): Boolean {

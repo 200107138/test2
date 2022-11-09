@@ -19,6 +19,9 @@
             android:id="@+id/action_fragment_training_to_secondGameFragment"
             app:destination="@id/fragment_second_game"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_fragment_training_to_secondGameHistoryFragment"
+            app:destination="@id/secondGameHistoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/fragment_rating"
@@ -46,5 +49,9 @@
             app:destination="@id/fragment_training"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/secondGameHistoryFragment"
+        android:name="com.example.test.SecondGameHistoryFragment"
+        android:label="SecondGameHistoryFragment" />
 
 </navigation>
