@@ -1,40 +1,42 @@
 package com.example.test
 
+import android.annotation.SuppressLint
 import android.app.Application
 import android.graphics.drawable.Drawable
 import android.os.CountDownTimer
 import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 
 
 class SecondGameViewModel(application: Application): AndroidViewModel(application){
 
-    val readAllData: LiveData<List<User>>
-    private val repository: UserRepository
+    val readAllData: LiveData<List<Result>>
+    private val repository: ResultRepository
 
     init {
-        val userDao = UserDatabase.getDatabase(application).userDao()
-        repository = UserRepository(userDao)
+        val resultDao = ResultDatabase.getDatabase(application).resultDao()
+        repository = ResultRepository(resultDao)
         readAllData = repository.readAllData
     }
 
-    fun addUser(user: User){
+    fun addResult(result: Result){
         viewModelScope.launch(Dispatchers.IO) {
-            repository.addUser(user)
+            repository.addResult(result)
         }
     }
-    fun deleteUser(user: User){
+    fun deleteUser(result: Result){
         viewModelScope.launch(Dispatchers.IO) {
-            repository.deleteUser(user)
+            repository.deleteResult(result)
         }
     }
 
     private lateinit var timer: CountDownTimer
     private lateinit var timer2: CountDownTimer
 
-    private val _averagereactiontime = MutableLiveData(0)
-    val averagereactiontime: LiveData<Int>
+    private var _averagereactiontime = 0
+    val averagereactiontime: Int
         get() = _averagereactiontime
 
     private val _currentSecondGameCount = MutableLiveData(1)
@@ -93,8 +95,7 @@ class SecondGameViewModel(application: Application): AndroidViewModel(applicatio
                 _randomsecondnumber = 0
                 _currentSecondGameCount.value = (_currentSecondGameCount.value)?.inc()
                 _reactiontime = end - start
-                _averagereactiontime.value =
-                    _averagereactiontime.value?.plus((_reactiontime / ROUNDS))
+                _averagereactiontime += (_reactiontime / ROUNDS)
                 timer()
                 timer.start()
             }
@@ -103,8 +104,7 @@ class SecondGameViewModel(application: Application): AndroidViewModel(applicatio
                 _randomsecondnumber = 0
                 _currentSecondGameCount.value = (_currentSecondGameCount.value)?.inc()
                 _reactiontime = 1000
-                _averagereactiontime.value =
-                    _averagereactiontime.value?.plus((_reactiontime / ROUNDS))
+                _averagereactiontime += (_reactiontime / ROUNDS)
                 timer()
                 timer.start()
             }
@@ -119,8 +119,7 @@ class SecondGameViewModel(application: Application): AndroidViewModel(applicatio
                 _randomsecondnumber = 0
                 _currentSecondGameCount.value = (_currentSecondGameCount.value)?.inc()
                 _reactiontime = end - start
-                _averagereactiontime.value =
-                    _averagereactiontime.value?.plus((_reactiontime / ROUNDS))
+                _averagereactiontime += (_reactiontime / ROUNDS)
                 timer()
                 timer.start()
             }
@@ -129,8 +128,7 @@ class SecondGameViewModel(application: Application): AndroidViewModel(applicatio
                 _randomsecondnumber = 0
                 _currentSecondGameCount.value = (_currentSecondGameCount.value)?.inc()
                 _reactiontime = 1000
-                _averagereactiontime.value =
-                    _averagereactiontime.value?.plus((_reactiontime / ROUNDS))
+                _averagereactiontime += (_reactiontime / ROUNDS)
                 timer()
                 timer.start()
             }
@@ -180,13 +178,18 @@ class SecondGameViewModel(application: Application): AndroidViewModel(applicatio
         _randomfirstnumber = 0
         _randomsecondnumber = 0
         _reactiontime = 0
-        _averagereactiontime.value = 0
+        _averagereactiontime = 0
         _starttext.value = "Start"
     }
-    fun davai(){
-        val user = User(0, "firstNaytme", "latystName", 3)
+    private fun finalresult(){
+        val result = Result(0, "$_averagereactiontime milliseconds", convertLongToDateString(System.currentTimeMillis()))
         // Add Data to Database
-        addUser(user)
+        addResult(result)
+    }
+    @SuppressLint("SimpleDateFormat")
+    fun convertLongToDateString(systemTime: Long): String {
+        return SimpleDateFormat("HH:mm:ss'  'MMM.dd.yyyy")
+            .format(systemTime).toString()
     }
 
     fun nextGame1(): Boolean {
@@ -194,7 +197,7 @@ class SecondGameViewModel(application: Application): AndroidViewModel(applicatio
             button1clicked()
             true
         }else {
-            davai()
+            finalresult()
             false
         }
 
@@ -206,7 +209,7 @@ class SecondGameViewModel(application: Application): AndroidViewModel(applicatio
             button2clicked()
             true
         }else {
-            davai()
+            finalresult()
             false
         }
     }

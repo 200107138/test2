@@ -1,8 +1,10 @@
 package com.example.test
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView.OnItemClickListener
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -14,9 +16,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
+class ListAdapter(val listener: OnItemClickListener): RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
 
-    private var userList = emptyList<User>()
+    private var resultList = emptyList<Result>()
     class MyViewHolder(val binding: CustomRowBinding): RecyclerView.ViewHolder(binding.root) {}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -26,24 +28,27 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-       return userList.size
+        return resultList.size
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
-        val currentItem = userList[position]
+        val currentItem = resultList[position]
         holder.binding.idTxt.text = currentItem.id.toString()
-        holder.binding.firstNameTxt.text = currentItem.firstName
-        holder.binding.lastNameTxt.text = currentItem.lastName
-        holder.binding.ageTxt.text = currentItem.age.toString()
+        holder.binding.firstNameTxt.text = currentItem.time
+        holder.binding.lastNameTxt.text = currentItem.date
         holder.binding.delete.setOnClickListener {
-
+            listener.onItemClick(currentItem)
         }
     }
 
+    interface OnItemClickListener{
+        fun onItemClick(result: Result)
+    }
 
-    fun setData(user: List<User>){
-        this.userList = user
+    @SuppressLint("NotifyDataSetChanged")
+    fun setData(result: List<Result>){
+        this.resultList = result
         notifyDataSetChanged()
     }
 

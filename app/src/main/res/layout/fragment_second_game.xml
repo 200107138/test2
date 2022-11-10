@@ -16,8 +16,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FDFDFD"
-    android:padding="16dp"
+
     tools:context=".SecondGameFragment">
+    <include android:id="@+id/toolbar" layout="@layout/custom_action_bar"></include>
+
     <TextView
         android:id="@+id/secondgamecount"
         android:layout_width="wrap_content"
@@ -25,34 +27,25 @@
         android:text="@{@string/game_round_count(gameViewModel.currentSecondGameCount, maxNoOfWords)}"
         android:textAlignment="center"
         android:textSize="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Round 0 of 3"/>
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="@{gameViewModel.clicked ?  View.GONE : View.VISIBLE}"
-        android:text="@string/second_game_description"
-        android:padding="16dp"
-        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/secondgamecount" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Round 0 of 3" />
+
 
     <TextView
         android:id="@+id/second_game_number1"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:text="@{gameViewModel.firstnumber == 0 ? @string/empty : gameViewModel.firstnumber.toString()}"
-        android:gravity="center"
-        android:textSize="50dp"
         android:background="@drawable/first_game_start"
+        android:gravity="center"
+        android:text="@{gameViewModel.firstnumber == 0 ? @string/empty : gameViewModel.firstnumber.toString()}"
+        android:textSize="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/dot"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"></TextView>
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"></TextView>
 
     <TextView
         android:id="@+id/dot"
@@ -63,33 +56,34 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"></TextView>
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"></TextView>
 
     <TextView
         android:id="@+id/second_game_number2"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:text="@{gameViewModel.secondnumber == 0 ?  @string/empty : gameViewModel.secondnumber.toString()}"
-        android:gravity="center"
-        android:textSize="50dp"
         android:background="@drawable/first_game_start"
+        android:gravity="center"
+        android:text="@{gameViewModel.secondnumber == 0 ?  @string/empty : gameViewModel.secondnumber.toString()}"
+        android:textSize="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/dot"
-        app:layout_constraintTop_toBottomOf="@+id/textView"></TextView>
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"></TextView>
 
     <TextView
         android:id="@+id/start_second_game"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:gravity="center"
         android:background="@drawable/first_game_start"
-        android:visibility="@{gameViewModel.clicked ?  View.GONE : View.VISIBLE}"
+        android:gravity="center"
         android:text="@{gameViewModel.starttext}"
         android:textSize="70dp"
+        android:layout_margin="16dp"
+        android:visibility="@{gameViewModel.clicked ?  View.GONE : View.VISIBLE}"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"></TextView>
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"></TextView>
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

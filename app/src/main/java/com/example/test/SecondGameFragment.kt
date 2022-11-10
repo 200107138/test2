@@ -86,7 +86,7 @@ class SecondGameFragment : Fragment() {
     private fun showFinalScoreDialog() {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(getString(R.string.first_game_result))
-            .setMessage(getString(R.string.average_time, viewModel.averagereactiontime.value))
+            .setMessage(getString(R.string.average_time, viewModel.averagereactiontime))
             .setCancelable(false)
             .setNegativeButton(getString(R.string.exit)) { _, _ ->
                 exitGame()
