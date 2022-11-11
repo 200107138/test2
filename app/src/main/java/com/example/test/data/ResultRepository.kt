@@ -1,6 +1,8 @@
-package com.example.test
+package com.example.test.data
 
 import androidx.lifecycle.LiveData
+import com.example.test.data.Result
+import com.example.test.data.ResultDao
 
 class ResultRepository(private val resultDao: ResultDao) {
 

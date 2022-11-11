@@ -2,9 +2,12 @@ package com.example.test
 
 import android.annotation.SuppressLint
 import android.app.Application
-import android.graphics.drawable.Drawable
 import android.os.CountDownTimer
 import androidx.lifecycle.*
+import com.example.test.ROUNDS
+import com.example.test.data.Result
+import com.example.test.data.ResultDatabase
+import com.example.test.data.ResultRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat

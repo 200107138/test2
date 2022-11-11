@@ -1,7 +1,8 @@
-package com.example.test
+package com.example.test.data
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.example.test.data.Result
 
 @Dao
 interface ResultDao {

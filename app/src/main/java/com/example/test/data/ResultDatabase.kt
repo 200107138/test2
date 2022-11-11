@@ -1,9 +1,11 @@
-package com.example.test
+package com.example.test.data
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.test.data.Result
+import com.example.test.data.ResultDao
 
 @Database(entities = [Result::class], version = 1, exportSchema = false)
 abstract class ResultDatabase : RoomDatabase() {

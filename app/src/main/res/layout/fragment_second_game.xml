@@ -18,7 +18,10 @@
     android:background="#FDFDFD"
 
     tools:context=".SecondGameFragment">
-    <include android:id="@+id/toolbar" layout="@layout/custom_action_bar"></include>
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/custom_action_bar" />
 
     <TextView
         android:id="@+id/secondgamecount"
@@ -26,7 +29,8 @@
         android:layout_height="wrap_content"
         android:text="@{@string/game_round_count(gameViewModel.currentSecondGameCount, maxNoOfWords)}"
         android:textAlignment="center"
-        android:textSize="25dp"
+        android:textSize="25sp"
+        android:fontFamily="@font/mavenprobold"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,11 +45,11 @@
         android:background="@drawable/first_game_start"
         android:gravity="center"
         android:text="@{gameViewModel.firstnumber == 0 ? @string/empty : gameViewModel.firstnumber.toString()}"
-        android:textSize="50dp"
+        android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/dot"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"></TextView>
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <TextView
         android:id="@+id/dot"
@@ -56,7 +60,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"></TextView>
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <TextView
         android:id="@+id/second_game_number2"
@@ -65,11 +69,11 @@
         android:background="@drawable/first_game_start"
         android:gravity="center"
         android:text="@{gameViewModel.secondnumber == 0 ?  @string/empty : gameViewModel.secondnumber.toString()}"
-        android:textSize="50dp"
+        android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/dot"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"></TextView>
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <TextView
         android:id="@+id/start_second_game"
@@ -78,12 +82,13 @@
         android:background="@drawable/first_game_start"
         android:gravity="center"
         android:text="@{gameViewModel.starttext}"
-        android:textSize="70dp"
+        android:textSize="70sp"
+        android:fontFamily="@font/mavenproregular"
         android:layout_margin="16dp"
         android:visibility="@{gameViewModel.clicked ?  View.GONE : View.VISIBLE}"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"></TextView>
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

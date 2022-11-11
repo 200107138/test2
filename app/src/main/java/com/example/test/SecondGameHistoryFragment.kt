@@ -6,16 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView.OnItemClickListener
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.test.R
-import com.example.test.SecondGameViewModel
-import com.example.test.databinding.FragmentSecondGameBinding
+import com.example.test.data.Result
 import com.example.test.databinding.FragmentSecondGameHistoryBinding
 
 class SecondGameHistoryFragment : Fragment(), ListAdapter.OnItemClickListener {
@@ -50,6 +45,7 @@ class SecondGameHistoryFragment : Fragment(), ListAdapter.OnItemClickListener {
     @SuppressLint("NotifyDataSetChanged")
     override fun onItemClick(result: Result) {
         mUserViewModel.deleteUser(result)
+        
        adapter.notifyDataSetChanged()
     }
 }

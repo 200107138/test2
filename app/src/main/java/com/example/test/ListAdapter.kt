@@ -2,18 +2,11 @@ package com.example.test
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView.OnItemClickListener
-import android.widget.TextView
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.test.data.Result
 
 import com.example.test.databinding.CustomRowBinding
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 
 class ListAdapter(val listener: OnItemClickListener): RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
@@ -39,6 +32,7 @@ class ListAdapter(val listener: OnItemClickListener): RecyclerView.Adapter<ListA
         holder.binding.lastNameTxt.text = currentItem.date
         holder.binding.delete.setOnClickListener {
             listener.onItemClick(currentItem)
+
         }
     }
 
