@@ -26,7 +26,11 @@ class TrainingFragment : Fragment(R.layout.fragment_training) {
 
         }
         binding.secondGameHistory.setOnClickListener { view : View ->
-            view.findNavController().navigate(TrainingFragmentDirections.actionFragmentTrainingToSecondGameHistoryFragment())
+            view.findNavController().navigate(TrainingFragmentDirections.actionFragmentTrainingToFragmentSecondGameHistory())
+
+        }
+        binding.thirdGameLauncher.setOnClickListener { view : View ->
+            view.findNavController().navigate(TrainingFragmentDirections.actionFragmentTrainingToFragmentThirdGame())
 
         }
 

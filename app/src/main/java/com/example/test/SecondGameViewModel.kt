@@ -2,7 +2,12 @@ package com.example.test
 
 import android.annotation.SuppressLint
 import android.app.Application
+import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.os.CountDownTimer
+import androidx.core.graphics.drawable.toDrawable
 import androidx.lifecycle.*
 import com.example.test.ROUNDS
 import com.example.test.data.Result
