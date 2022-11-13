@@ -5,7 +5,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="#FFFFFF"
+        android:background="#FAFAFA"
         android:padding="16dp">
 
         <TextView
@@ -20,7 +20,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_baseline_close_24"

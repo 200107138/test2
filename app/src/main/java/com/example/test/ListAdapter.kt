@@ -28,8 +28,8 @@ class ListAdapter(val listener: OnItemClickListener): RecyclerView.Adapter<ListA
 
         val currentItem = resultList[position]
         holder.binding.idTxt.text = currentItem.id.toString()
-        holder.binding.firstNameTxt.text = currentItem.time
-        holder.binding.lastNameTxt.text = currentItem.date
+        holder.binding.timeTxt.text = currentItem.time
+        holder.binding.dateTxt.text = currentItem.date
         holder.binding.delete.setOnClickListener {
             listener.onItemClick(currentItem)
 

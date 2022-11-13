@@ -27,7 +27,16 @@ class ThirdGameFragment : Fragment() {
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_third_game, container, false)
         binding.gameViewModel = viewModel
+        viewModel.currentThirdGameCount.observe(viewLifecycleOwner) { loading ->
+            loading?.let {
+                // Here, I'm calling a new function named setLoaderVisibility
+                    if(viewModel.currentThirdGameCount.value!! <= ROUNDS){}
+                    else {
+                        showFinalScoreDialog()
+                    }
 
+            }
+        }
         binding.maxNoOfWords = ROUNDS
 
         return binding.root
@@ -38,13 +47,17 @@ class ThirdGameFragment : Fragment() {
         viewModel.shufflelist()
         binding.thirdGameStart.setOnClickListener {
 
-            viewModel.startGame()
-
+            if(viewModel.startGame()){}
+            else {
+            showFinalScoreDialog()
+        }
+        }
+        binding.toolbar.close.setOnClickListener{
+            findNavController().navigate(R.id.action_fragment_third_game_to_fragment_training)
         }
 
         binding.lifecycleOwner = viewLifecycleOwner
     }
-
 
 
 

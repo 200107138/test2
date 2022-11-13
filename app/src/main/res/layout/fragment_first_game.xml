@@ -23,7 +23,7 @@
         android:layout_height="match_parent"
 
         tools:context="com.example.test.FirstGameFragment"
-        android:background="#FDFDFD">
+        android:background="#FAFAFA">
 
         <include
             android:id="@+id/toolbar"

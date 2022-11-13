@@ -23,12 +23,12 @@ class MainActivity : AppCompatActivity() {
 
         NavigationUI.setupWithNavController(binding.bottomBar, navController)
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if(destination.id == R.id.fragment_first_game || destination.id == R.id.fragment_second_game) {
-
-                binding.bottomBar.visibility = View.GONE
-            } else {
+            if(destination.id == R.id.fragment_training || destination.id == R.id.fragment_rating) {
 
                 binding.bottomBar.visibility = View.VISIBLE
+            } else {
+
+                binding.bottomBar.visibility = View.GONE
             }
         }
 

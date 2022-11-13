@@ -50,6 +50,9 @@ class SecondGameFragment : Fragment() {
             onClick2Button()
 
         }
+        binding.toolbar.close.setOnClickListener{
+            findNavController().navigate(R.id.action_fragment_second_game_to_fragment_training)
+        }
         binding.lifecycleOwner = viewLifecycleOwner
     }
 

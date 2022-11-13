@@ -35,10 +35,12 @@ class ThirdGameViewModel(application: Application): AndroidViewModel(application
     )
 
     private val _list = MutableLiveData(drawable_clicked)
-
-
     val list: LiveData<Array<Boolean>>
         get() = _list
+
+    private val _drawable_list = MutableLiveData(drawable_array)
+    val drawable_list: LiveData<Array<Int>>
+        get() = _drawable_list
 
     private var _drwbl = R.drawable.cell_src_1
     val drwbl: Int
@@ -87,22 +89,29 @@ class ThirdGameViewModel(application: Application): AndroidViewModel(application
     val clicked: LiveData<Boolean>
         get() = _clicked
 
-    private fun getNextGame() {
+    private fun getNextGame(){
         _start = System.currentTimeMillis().toInt()
+
         _clicked.value = true
         drawable_clicked.fill(false)
         _list.value = drawable_clicked
+        _start = System.currentTimeMillis().toInt()
+        _pair = 0
     }
     fun shufflelist(){
-        drawable_array.shuffle()
+        for (i in 0..(10..99).random()) {
+            drawable_array.shuffle()
+        }
     }
+
+
     fun onClick(index: Int){
 
         if(_ended == 1) {
-        drawable_clicked[index] = true
-        _list.value = drawable_clicked
 
-            if (drawable_array[index] != 0 && drawable_clicked[index]) {
+            if (!drawable_clicked[index]) {
+                drawable_clicked[index] = true
+                _list.value = drawable_clicked
                 _clickcount++
                 if (clickcount == 1) {
                     _drwbl = drawable_array[index]
@@ -110,18 +119,21 @@ class ThirdGameViewModel(application: Application): AndroidViewModel(application
                 }
                 if (clickcount == 2) {
                     if (drwbl == drawable_array[index]) {
+                        _clickcount = 0
                         _pair++
                         if(pair == 8){
-                            nextround()
-                            _currentThirdGameCount
+                            _clicked.value = false
+                            drawable_array.shuffle()
+                            _drawable_list.value = drawable_array
+                            _currentThirdGameCount.value = (_currentThirdGameCount.value)?.inc()
                             _end = System.currentTimeMillis().toInt()
                             _time = end - start
                             _averagetime += (_time / ROUNDS)
-                        }
-                        drawable_array[index] = 0
-                        drawable_array[indexoffirst] = 0
 
-                        _clickcount = 0
+                        }
+
+
+
                     } else {
                         _ended = 0
                         timer(index)
@@ -135,7 +147,7 @@ class ThirdGameViewModel(application: Application): AndroidViewModel(application
     }
 
     fun timer(index: Int){
-        timer = object : CountDownTimer(500, 1000) {
+        timer = object : CountDownTimer(200, 1000) {
 
             override fun onTick(millisUntilFinished: Long) {
 
@@ -152,30 +164,20 @@ class ThirdGameViewModel(application: Application): AndroidViewModel(application
     }
 
 
-    fun getdrawable(index: Int): Int  {
-        _drwbl = drawable_array[index]
-        return drwbl
-    }
-
 
     fun reinitializeData() {
         drawable_array.shuffle()
         _clicked.value = false
         drawable_clicked.fill(false)
+        _list.value = drawable_clicked
+        _drawable_list.value = drawable_array
         _currentThirdGameCount.value = 1
         _start = 0
-
-    }
-    fun nextround() {
-        drawable_array.shuffle()
-        _clicked.value = false
-        drawable_clicked.fill(false)
-        _list.value = drawable_clicked
-        _start = 0
         _end = 0
+        _time = 0
         _pair = 0
-
     }
+
 
     @SuppressLint("SimpleDateFormat")
     fun convertLongToDateString(systemTime: Long): String {
@@ -183,9 +185,12 @@ class ThirdGameViewModel(application: Application): AndroidViewModel(application
             .format(systemTime).toString()
     }
 
-
     fun startGame(): Boolean {
-        getNextGame()
-        return _currentThirdGameCount.value!! < ROUNDS
+        return if(_currentThirdGameCount.value!! <= ROUNDS) {
+            getNextGame()
+            true
+        }else {
+            false
+        }
     }
 }

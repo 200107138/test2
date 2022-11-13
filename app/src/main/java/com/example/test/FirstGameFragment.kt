@@ -43,7 +43,9 @@ class FirstGameFragment : Fragment() {
             onClickStart()
 
         }
-
+        binding.toolbar.close.setOnClickListener{
+            findNavController().navigate(R.id.action_fragment_first_game_to_fragment_training)
+        }
         binding.lifecycleOwner = viewLifecycleOwner
     }
 

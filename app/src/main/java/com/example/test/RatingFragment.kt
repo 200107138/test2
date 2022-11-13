@@ -1,30 +1,34 @@
 package com.example.test
 
+import android.graphics.drawable.AnimationDrawable
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.navigation.findNavController
+import com.example.test.databinding.FragmentRatingBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import com.example.test.databinding.FragmentTrainingBinding
 
-class RatingFragment : Fragment() {
+class RatingFragment : Fragment(R.layout.fragment_rating) {
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
+    private lateinit var binding: FragmentRatingBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_rating, container, false)
+    ): View {
+
+        binding = FragmentRatingBinding.inflate(inflater, container, false)
+        val ad = binding.statBackground.background as AnimationDrawable
+
+        ad.setEnterFadeDuration(10)
+        ad.setExitFadeDuration(5000)
+        ad.start()
+
+
+        return binding.root
     }
 
+
 }
+

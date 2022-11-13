@@ -20,7 +20,7 @@
         android:layout_height="match_parent"
 
         tools:context=".ThirdGameFragment"
-        android:background="#FDFDFD">
+        android:background="#FAFAFA">
 
         <include
             android:id="@+id/toolbar"
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/mavenproregular"
-            android:text="rgrgr"
+            android:text="@{@string/game_round_count(gameViewModel.currentThirdGameCount, maxNoOfWords)}"
             android:textAlignment="center"
             android:textSize="25sp"
             app:layout_constraintBottom_toBottomOf="@+id/toolbar"
@@ -57,7 +57,7 @@
                 android:layout_height="80dp"
                 android:layout_margin="8dp"
                 android:onClick="@{() -> gameViewModel.onClick(0)}"
-                app:imageResource="@{gameViewModel.getdrawable(0)}"
+                app:imageResource="@{gameViewModel.drawable_list[0]}"
                 android:background="@{gameViewModel.list[0] ? @drawable/white_background : @drawable/black_background}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -69,7 +69,7 @@
                 android:layout_margin="8dp"
                 android:onClick="@{() -> gameViewModel.onClick(1)}"
                 android:background="@{gameViewModel.list[1] ? @drawable/white_background : @drawable/black_background}"
-                app:imageResource="@{gameViewModel.getdrawable(1)}"
+                app:imageResource="@{gameViewModel.drawable_list[1]}"
                 app:layout_constraintBottom_toBottomOf="@+id/cell1"
                 app:layout_constraintStart_toEndOf="@+id/cell1"
                 app:layout_constraintTop_toTopOf="@+id/cell1">
@@ -83,7 +83,7 @@
                 android:layout_margin="8dp"
                 android:onClick="@{() -> gameViewModel.onClick(2)}"
                 android:background="@{gameViewModel.list[2] ? @drawable/white_background : @drawable/black_background}"
-                app:imageResource="@{gameViewModel.getdrawable(2)}"
+                app:imageResource="@{gameViewModel.drawable_list[2]}"
                 app:layout_constraintBottom_toBottomOf="@+id/cell2"
                 app:layout_constraintStart_toEndOf="@+id/cell2"
                 app:layout_constraintTop_toTopOf="@+id/cell2">
@@ -97,7 +97,7 @@
                 android:layout_margin="8dp"
                 android:onClick="@{() -> gameViewModel.onClick(3)}"
                 android:background="@{gameViewModel.list[3] ? @drawable/white_background : @drawable/black_background}"
-                app:imageResource="@{gameViewModel.getdrawable(3)}"
+                app:imageResource="@{gameViewModel.drawable_list[3]}"
                 app:layout_constraintBottom_toBottomOf="@+id/cell3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/cell3"
@@ -112,7 +112,7 @@
                 android:layout_margin="8dp"
                 android:onClick="@{() -> gameViewModel.onClick(4)}"
                 android:background="@{gameViewModel.list[4] ? @drawable/white_background : @drawable/black_background}"
-                app:imageResource="@{gameViewModel.getdrawable(4)}"
+                app:imageResource="@{gameViewModel.drawable_list[4]}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cell1">
 
@@ -125,7 +125,7 @@
                 android:layout_margin="8dp"
                 android:onClick="@{() -> gameViewModel.onClick(5)}"
                 android:background="@{gameViewModel.list[5] ? @drawable/white_background : @drawable/black_background}"
-                app:imageResource="@{gameViewModel.getdrawable(5)}"
+                app:imageResource="@{gameViewModel.drawable_list[5]}"
                 app:layout_constraintBottom_toBottomOf="@+id/cell5"
                 app:layout_constraintStart_toEndOf="@+id/cell5"
                 app:layout_constraintTop_toTopOf="@+id/cell5">
@@ -139,7 +139,7 @@
                 android:layout_margin="8dp"
                 android:onClick="@{() -> gameViewModel.onClick(6)}"
                 android:background="@{gameViewModel.list[6] ? @drawable/white_background : @drawable/black_background}"
-                app:imageResource="@{gameViewModel.getdrawable(6)}"
+                app:imageResource="@{gameViewModel.drawable_list[6]}"
                 app:layout_constraintBottom_toBottomOf="@+id/cell6"
                 app:layout_constraintStart_toEndOf="@+id/cell6"
                 app:layout_constraintTop_toTopOf="@+id/cell6">
@@ -153,7 +153,7 @@
                 android:layout_margin="8dp"
                 android:onClick="@{() -> gameViewModel.onClick(7)}"
                 android:background="@{gameViewModel.list[7] ? @drawable/white_background : @drawable/black_background}"
-                app:imageResource="@{gameViewModel.getdrawable(7)}"
+                app:imageResource="@{gameViewModel.drawable_list[7]}"
                 app:layout_constraintBottom_toBottomOf="@+id/cell7"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/cell7"
@@ -168,7 +168,7 @@
                 android:layout_margin="8dp"
                 android:onClick="@{() -> gameViewModel.onClick(8)}"
                 android:background="@{gameViewModel.list[8] ? @drawable/white_background : @drawable/black_background}"
-                app:imageResource="@{gameViewModel.getdrawable(8)}"
+                app:imageResource="@{gameViewModel.drawable_list[8]}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cell5">
 
@@ -182,7 +182,7 @@
                 android:layout_margin="8dp"
                 android:onClick="@{() -> gameViewModel.onClick(9)}"
                 android:background="@{gameViewModel.list[9] ? @drawable/white_background : @drawable/black_background}"
-                app:imageResource="@{gameViewModel.getdrawable(9)}"
+                app:imageResource="@{gameViewModel.drawable_list[9]}"
                 app:layout_constraintBottom_toBottomOf="@+id/cell9"
                 app:layout_constraintStart_toEndOf="@+id/cell9"
                 app:layout_constraintTop_toTopOf="@+id/cell9">
@@ -196,7 +196,7 @@
                 android:layout_margin="8dp"
                 android:onClick="@{() -> gameViewModel.onClick(10)}"
                 android:background="@{gameViewModel.list[10] ? @drawable/white_background : @drawable/black_background}"
-                app:imageResource="@{gameViewModel.getdrawable(10)}"
+                app:imageResource="@{gameViewModel.drawable_list[10]}"
                 app:layout_constraintBottom_toBottomOf="@+id/cell10"
                 app:layout_constraintStart_toEndOf="@+id/cell10"
                 app:layout_constraintTop_toTopOf="@+id/cell10">
@@ -210,7 +210,7 @@
                 android:layout_margin="8dp"
                 android:onClick="@{() -> gameViewModel.onClick(11)}"
                 android:background="@{gameViewModel.list[11] ? @drawable/white_background : @drawable/black_background}"
-                app:imageResource="@{gameViewModel.getdrawable(11)}"
+                app:imageResource="@{gameViewModel.drawable_list[11]}"
                 app:layout_constraintBottom_toBottomOf="@+id/cell11"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/cell11"
@@ -225,7 +225,7 @@
                 android:layout_margin="8dp"
                 android:onClick="@{() -> gameViewModel.onClick(12)}"
                 android:background="@{gameViewModel.list[12] ? @drawable/white_background : @drawable/black_background}"
-                app:imageResource="@{gameViewModel.getdrawable(12)}"
+                app:imageResource="@{gameViewModel.drawable_list[12]}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cell9">
 
@@ -238,7 +238,7 @@
                 android:layout_margin="8dp"
                 android:onClick="@{() -> gameViewModel.onClick(13)}"
                 android:background="@{gameViewModel.list[13] ? @drawable/white_background : @drawable/black_background}"
-                app:imageResource="@{gameViewModel.getdrawable(13)}"
+                app:imageResource="@{gameViewModel.drawable_list[13]}"
                 app:layout_constraintBottom_toBottomOf="@+id/cell13"
                 app:layout_constraintStart_toEndOf="@+id/cell13"
                 app:layout_constraintTop_toTopOf="@+id/cell13">
@@ -252,7 +252,7 @@
                 android:layout_margin="8dp"
                 android:onClick="@{() -> gameViewModel.onClick(14)}"
                 android:background="@{gameViewModel.list[14] ? @drawable/white_background : @drawable/black_background}"
-                app:imageResource="@{gameViewModel.getdrawable(14)}"
+                app:imageResource="@{gameViewModel.drawable_list[14]}"
                 app:layout_constraintBottom_toBottomOf="@+id/cell14"
                 app:layout_constraintStart_toEndOf="@+id/cell14"
                 app:layout_constraintTop_toTopOf="@+id/cell14">
@@ -266,7 +266,7 @@
                 android:layout_margin="8dp"
                 android:onClick="@{() -> gameViewModel.onClick(15)}"
                 android:background="@{gameViewModel.list[15] ? @drawable/white_background : @drawable/black_background}"
-                app:imageResource="@{gameViewModel.getdrawable(15)}"
+                app:imageResource="@{gameViewModel.drawable_list[15]}"
                 app:layout_constraintBottom_toBottomOf="@+id/cell15"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/cell15"
@@ -278,7 +278,8 @@
                 android:id="@+id/third_game_start"
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
-                android:text="ergererge"
+                android:text="Start"
+                android:fontFamily="@font/mavenproregular"
                 android:visibility="@{gameViewModel.clicked ?  TextView.GONE : TextView.VISIBLE}"
                 android:layout_margin="8dp"
                 android:background="@drawable/white_background"

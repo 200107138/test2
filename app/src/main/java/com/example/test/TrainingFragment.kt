@@ -17,6 +17,8 @@ class TrainingFragment : Fragment(R.layout.fragment_training) {
     ): View {
 
         binding = FragmentTrainingBinding.inflate(inflater, container, false)
+
+
         binding.firstGameLauncher.setOnClickListener { view : View ->
             view.findNavController().navigate(TrainingFragmentDirections.actionTrainingFragmentToFirstGameFragment())
 
