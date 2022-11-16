@@ -9,10 +9,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 
 import com.example.test.databinding.FragmentThirdGameBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-
+import kotlinx.coroutines.flow.callbackFlow
 
 
 class ThirdGameFragment : Fragment() {
@@ -32,6 +33,7 @@ class ThirdGameFragment : Fragment() {
                 // Here, I'm calling a new function named setLoaderVisibility
                     if(viewModel.currentThirdGameCount.value!! <= ROUNDS){}
                     else {
+                        viewModel.finalresult()
                         showFinalScoreDialog()
                     }
 
@@ -53,7 +55,7 @@ class ThirdGameFragment : Fragment() {
         }
         }
         binding.toolbar.close.setOnClickListener{
-            findNavController().navigate(R.id.action_fragment_third_game_to_fragment_training)
+            findNavController().popBackStack()
         }
 
         binding.lifecycleOwner = viewLifecycleOwner
@@ -79,7 +81,7 @@ class ThirdGameFragment : Fragment() {
     }
 
     private fun exitGame() {
-        findNavController().navigate(R.id.action_fragment_third_game_to_fragment_training)
+        findNavController().popBackStack()
     }
 
     private fun restartGame() {

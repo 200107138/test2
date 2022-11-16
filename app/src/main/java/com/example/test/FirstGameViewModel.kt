@@ -1,17 +1,38 @@
 package com.example.test
 
+import android.annotation.SuppressLint
+import android.app.Application
 import android.graphics.drawable.Drawable
 import android.os.CountDownTimer
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import com.example.test.data.Result
+import com.example.test.data.ResultDatabase
+import com.example.test.data.ResultRepository
+import com.example.test.data.Type
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
 
 
-class FirstGameViewModel : ViewModel(){
+class FirstGameViewModel(application: Application): AndroidViewModel(application){
+
+private val repository: ResultRepository
+
+init {
+    val resultDao = ResultDatabase.getDatabase(application).resultDao()
+    repository = ResultRepository(resultDao)
+}
+
+fun addResult(result: Result){
+    viewModelScope.launch(Dispatchers.IO) {
+        repository.addResult(result)
+    }
+}
+
     private lateinit var timer: CountDownTimer
 
-    private val _averagereactiontime = MutableLiveData(0)
-    val averagereactiontime: LiveData<Int>
+    private var _averagereactiontime = 0
+    val averagereactiontime: Int
         get() = _averagereactiontime
 
     private val _currentFirstGameCount = MutableLiveData(1)
@@ -60,7 +81,7 @@ class FirstGameViewModel : ViewModel(){
 
 
 
-            _averagereactiontime.value = _averagereactiontime.value?.plus((_reactiontime / ROUNDS))
+            _averagereactiontime += (_reactiontime / ROUNDS)
             _currentFirstGameCount.value = (_currentFirstGameCount.value)?.inc()
             if(_currentFirstGameCount.value!! > ROUNDS){
                 timer.cancel()
@@ -81,8 +102,7 @@ class FirstGameViewModel : ViewModel(){
             timer.start()
             _reactiontime = 1000
 
-            _averagereactiontime.value =
-                _averagereactiontime.value?.plus((_reactiontime / ROUNDS))
+            _averagereactiontime += (_reactiontime / ROUNDS)
             _currentFirstGameCount.value = (_currentFirstGameCount.value)?.inc()
             if(_currentFirstGameCount.value!! > ROUNDS){
                 timer.cancel()
@@ -119,11 +139,28 @@ class FirstGameViewModel : ViewModel(){
         _clicked = false
         _starttext.value = "Start"
         _reactiontime = 0
-        _averagereactiontime.value = 0
+        _averagereactiontime = 0
+    }
+    private fun finalresult(){
+        val result = Result(0, "$_averagereactiontime milliseconds", convertLongToDateString(System.currentTimeMillis()), Type.ReactionTime)
+        // Add Data to Database
+        addResult(result)
+    }
+    @SuppressLint("SimpleDateFormat")
+    fun convertLongToDateString(systemTime: Long): String {
+        return SimpleDateFormat("HH:mm:ss'  'MMM.dd.yyyy")
+            .format(systemTime).toString()
     }
 
+
     fun nextGame(): Boolean {
-        getNextGame()
-        return _currentFirstGameCount.value!! <= ROUNDS
+       return if( _currentFirstGameCount.value!! < ROUNDS) {
+           getNextGame()
+           true
+       }
+        else{
+            finalresult()
+            false
+        }
     }
 }

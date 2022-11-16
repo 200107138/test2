@@ -51,7 +51,7 @@ class SecondGameFragment : Fragment() {
 
         }
         binding.toolbar.close.setOnClickListener{
-            findNavController().navigate(R.id.action_fragment_second_game_to_fragment_training)
+            findNavController().popBackStack()
         }
         binding.lifecycleOwner = viewLifecycleOwner
     }
@@ -101,7 +101,7 @@ class SecondGameFragment : Fragment() {
     }
 
     private fun exitGame() {
-        findNavController().navigate(R.id.action_fragment_second_game_to_fragment_training)
+        findNavController().popBackStack()
     }
 
     private fun restartGame() {

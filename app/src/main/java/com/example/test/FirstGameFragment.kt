@@ -44,7 +44,7 @@ class FirstGameFragment : Fragment() {
 
         }
         binding.toolbar.close.setOnClickListener{
-            findNavController().navigate(R.id.action_fragment_first_game_to_fragment_training)
+            findNavController().popBackStack()
         }
         binding.lifecycleOwner = viewLifecycleOwner
     }
@@ -72,7 +72,7 @@ class FirstGameFragment : Fragment() {
     private fun showFinalScoreDialog() {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle(getString(R.string.first_game_result))
-            .setMessage(getString(R.string.average_time, viewModel.averagereactiontime.value))
+            .setMessage(getString(R.string.average_time, viewModel.averagereactiontime))
             .setCancelable(false)
             .setNegativeButton(getString(R.string.exit)) { _, _ ->
                 exitGame()
@@ -84,7 +84,7 @@ class FirstGameFragment : Fragment() {
     }
 
     private fun exitGame() {
-        findNavController().navigate(R.id.action_fragment_first_game_to_fragment_training)
+        findNavController().popBackStack()
     }
 
     private fun restartGame() {

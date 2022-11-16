@@ -9,22 +9,24 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.data.Result
-import com.example.test.databinding.FragmentSecondGameHistoryBinding
+import com.example.test.data.Type
+import com.example.test.databinding.FragmentHistoryBinding
 
-class SecondGameHistoryFragment : Fragment(), ListAdapter.OnItemClickListener {
+class HistoryFragment : Fragment(), ListAdapter.OnItemClickListener {
 
-    private lateinit var mUserViewModel: SecondGameViewModel
-    private lateinit var binding: FragmentSecondGameHistoryBinding
+    private lateinit var mUserViewModel: HistoryViewModel
+    private lateinit var binding: FragmentHistoryBinding
     private val adapter = ListAdapter(this)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_second_game_history, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_history, container, false)
         // Recyclerview
 
         val recyclerView = binding.recyclerview
@@ -32,7 +34,12 @@ class SecondGameHistoryFragment : Fragment(), ListAdapter.OnItemClickListener {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         // UserViewModel
-        mUserViewModel = ViewModelProvider(this).get(SecondGameViewModel::class.java)
+        mUserViewModel = ViewModelProvider(
+            this, HistoryViewModelFactory(
+                requireActivity().application,
+                HistoryFragmentArgs.fromBundle(this.arguments as Bundle).type,
+            )
+        )[HistoryViewModel::class.java]
         mUserViewModel.readAllData.observe(viewLifecycleOwner, Observer { result ->
             adapter.setData(result)
         })
@@ -45,8 +52,8 @@ class SecondGameHistoryFragment : Fragment(), ListAdapter.OnItemClickListener {
     @SuppressLint("NotifyDataSetChanged")
     override fun onItemClick(result: Result) {
         mUserViewModel.deleteUser(result)
-        
-       adapter.notifyDataSetChanged()
+
+        adapter.notifyDataSetChanged()
     }
 }
 

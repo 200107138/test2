@@ -13,16 +13,27 @@ import com.example.test.ROUNDS
 import com.example.test.data.Result
 import com.example.test.data.ResultDatabase
 import com.example.test.data.ResultRepository
+import com.example.test.data.Type
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Collections.shuffle
 import kotlin.concurrent.timer
 
-
 class ThirdGameViewModel(application: Application): AndroidViewModel(application){
 
+    private val repository: ResultRepository
 
+    init {
+        val resultDao = ResultDatabase.getDatabase(application).resultDao()
+        repository = ResultRepository(resultDao)
+    }
+
+    fun addResult(result: Result){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.addResult(result)
+        }
+    }
     var drawable_array= arrayOf(R.drawable.cell_src_1, R.drawable.cell_src_2, R.drawable.cell_src_3, R.drawable.cell_src_4,
         R.drawable.cell_src_5, R.drawable.cell_src_6, R.drawable.cell_src_7, R.drawable.cell_src_8,
         R.drawable.cell_src_1, R.drawable.cell_src_2, R.drawable.cell_src_3, R.drawable.cell_src_4,
@@ -179,17 +190,22 @@ class ThirdGameViewModel(application: Application): AndroidViewModel(application
     }
 
 
+    fun finalresult(){
+        val result = Result(0, "$_averagetime milliseconds", convertLongToDateString(System.currentTimeMillis()), Type.Memory)
+        // Add Data to Database
+        addResult(result)
+    }
     @SuppressLint("SimpleDateFormat")
     fun convertLongToDateString(systemTime: Long): String {
         return SimpleDateFormat("HH:mm:ss'  'MMM.dd.yyyy")
             .format(systemTime).toString()
     }
-
     fun startGame(): Boolean {
         return if(_currentThirdGameCount.value!! <= ROUNDS) {
             getNextGame()
             true
         }else {
+
             false
         }
     }

@@ -13,7 +13,7 @@ interface ResultDao {
     @Delete
     suspend fun deleteResult(result: Result)
 
-    @Query("SELECT * FROM result_table ORDER BY id ASC")
-    fun readAllData(): LiveData<List<Result>>
+    @Query("SELECT * FROM result_table where type=:type ORDER BY id ASC")
+    fun readAllData(type: Type): LiveData<List<Result>>
 
 }

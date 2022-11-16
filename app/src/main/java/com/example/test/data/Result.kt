@@ -9,4 +9,11 @@ data class Result(
     val id: Int,
     val time: String,
     val date: String,
+    val type: Type,
 )
+
+enum class Type {
+    PeripheralVision,
+    ReactionTime,
+    Memory
+}

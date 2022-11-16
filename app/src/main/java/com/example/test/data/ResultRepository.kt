@@ -6,7 +6,7 @@ import com.example.test.data.ResultDao
 
 class ResultRepository(private val resultDao: ResultDao) {
 
-    val readAllData: LiveData<List<Result>> = resultDao.readAllData()
+//    val readAllData: LiveData<List<Result>> = resultDao.readAllData()
 
     suspend fun addResult(result: Result){
         resultDao.addResult(result)

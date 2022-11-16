@@ -13,6 +13,7 @@ import com.example.test.ROUNDS
 import com.example.test.data.Result
 import com.example.test.data.ResultDatabase
 import com.example.test.data.ResultRepository
+import com.example.test.data.Type
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -20,13 +21,11 @@ import java.text.SimpleDateFormat
 
 class SecondGameViewModel(application: Application): AndroidViewModel(application){
 
-    val readAllData: LiveData<List<Result>>
     private val repository: ResultRepository
 
     init {
         val resultDao = ResultDatabase.getDatabase(application).resultDao()
         repository = ResultRepository(resultDao)
-        readAllData = repository.readAllData
     }
 
     fun addResult(result: Result){
@@ -34,11 +33,7 @@ class SecondGameViewModel(application: Application): AndroidViewModel(applicatio
             repository.addResult(result)
         }
     }
-    fun deleteUser(result: Result){
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.deleteResult(result)
-        }
-    }
+
 
     private lateinit var timer: CountDownTimer
     private lateinit var timer2: CountDownTimer
@@ -190,7 +185,7 @@ class SecondGameViewModel(application: Application): AndroidViewModel(applicatio
         _starttext.value = "Start"
     }
     private fun finalresult(){
-        val result = Result(0, "$_averagereactiontime milliseconds", convertLongToDateString(System.currentTimeMillis()))
+        val result = Result(0, "$_averagereactiontime milliseconds", convertLongToDateString(System.currentTimeMillis()), Type.PeripheralVision)
         // Add Data to Database
         addResult(result)
     }

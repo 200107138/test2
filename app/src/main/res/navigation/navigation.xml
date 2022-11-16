@@ -20,8 +20,8 @@
             app:destination="@id/fragment_second_game"
             app:popUpToInclusive="false" />
         <action
-            android:id="@+id/action_fragment_training_to_fragment_second_game_history"
-            app:destination="@id/fragment_second_game_history" />
+            android:id="@+id/action_fragment_training_to_fragment_history"
+            app:destination="@id/fragment_history" />
         <action
             android:id="@+id/action_fragment_training_to_fragment_third_game"
             app:destination="@id/fragment_third_game" />
@@ -39,34 +39,23 @@
         android:label="fragment_first_game"
         tools:layout="@layout/fragment_first_game" >
 
-        <action
-            android:id="@+id/action_fragment_first_game_to_fragment_training"
-            app:destination="@id/fragment_training"
-            app:popUpTo="@id/fragment_training"
-            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/fragment_second_game"
         android:name="com.example.test.SecondGameFragment"
         android:label="fragment_second_game"
         tools:layout="@layout/fragment_second_game" >
-        <action
-            android:id="@+id/action_fragment_second_game_to_fragment_training"
-            app:destination="@id/fragment_training"
-            app:popUpTo="@id/fragment_training"
-            app:popUpToInclusive="true" />
+
     </fragment>
     <fragment
-        android:id="@+id/fragment_second_game_history"
-        android:name="com.example.test.SecondGameHistoryFragment"
-        android:label="fragment_second_game_history"
-        tools:layout="@layout/fragment_second_game_history">
+        android:id="@+id/fragment_history"
+        android:name="com.example.test.HistoryFragment"
+        android:label="fragment_history"
+        tools:layout="@layout/fragment_history">
 
-        <action
-            android:id="@+id/action_fragment_second_game_history_to_fragment_training"
-            app:destination="@id/fragment_training"
-            app:popUpTo="@id/fragment_training"
-            app:popUpToInclusive="true" />
+        <argument
+            android:name="type"
+            app:argType="com.example.test.data.Type" />
     </fragment>
     <fragment
         android:id="@+id/fragment_third_game"
@@ -74,12 +63,6 @@
         android:label="fragment_third_game"
         tools:layout="@layout/fragment_third_game">
 
-
-        <action
-            android:id="@+id/action_fragment_third_game_to_fragment_training"
-            app:destination="@id/fragment_training"
-            app:popUpTo="@id/fragment_training"
-            app:popUpToInclusive="true" />
     </fragment>
 
 </navigation>

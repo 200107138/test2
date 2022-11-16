@@ -60,6 +60,7 @@
                         app:layout_constraintStart_toStartOf="parent" />
 
                     <TextView
+                        android:id="@+id/first_game_history"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
@@ -135,6 +136,7 @@
                         app:layout_constraintStart_toStartOf="parent" />
 
                     <TextView
+                        android:id="@+id/third_game_history"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
@@ -171,6 +173,7 @@
                         app:layout_constraintStart_toStartOf="parent" />
 
                     <TextView
+                        android:id="@+id/fourth_game_history"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
