@@ -3,6 +3,13 @@ package com.example.test
 class GameSettingsRepository {
 
     var isRatingModeEnabled = false
+    val destinations = listOf(
+        R.id.fragment_first_game,
+        R.id.fragment_second_game,
+        R.id.fragment_third_game,
+    )
+
+    var remainingDestinations = mutableListOf<Int>().apply { addAll(destinations) }
 
     companion object {
         @Volatile

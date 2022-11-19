@@ -5,13 +5,15 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.test.databinding.FragmentRatingBinding
 
 import com.example.test.databinding.FragmentTrainingBinding
 
 class RatingFragment : Fragment(R.layout.fragment_rating) {
-
+    private val viewModel: RatingViewModel by viewModels()
     private lateinit var binding: FragmentRatingBinding
 
 
@@ -27,7 +29,10 @@ class RatingFragment : Fragment(R.layout.fragment_rating) {
         ad.setExitFadeDuration(5000)
         ad.start()
         binding.button.setOnClickListener {
+            viewModel.fillDestinations()
             GameSettingsRepository.getInstance().isRatingModeEnabled = true
+            this.findNavController().navigate(
+                viewModel.getNextNavDestination())
         }
 
 

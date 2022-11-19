@@ -30,6 +30,7 @@ fun addResult(result: Result){
 }
 
     private lateinit var timer: CountDownTimer
+    private lateinit var timerforpenalty: CountDownTimer
 
     private var _averagereactiontime = 0
     val averagereactiontime: Int
@@ -39,10 +40,6 @@ fun addResult(result: Result){
     val currentFirstGameCount: LiveData<Int>
         get() = _currentFirstGameCount
 
-    private var _currentTag = "white"
-    val currentTag: String
-        get() = _currentTag
-
     private var _start = 0
     val start: Int
         get() = _start
@@ -51,97 +48,107 @@ fun addResult(result: Result){
     val end: Int
         get() = _end
 
+    private var _randommillisecond = 2000L
+    val randommillisecond: Long
+        get() = _randommillisecond
+
     private var _reactiontime = 0
     val reactiontime: Int
         get() = _reactiontime
 
-    private var _clicked = false
-    val clicked: Boolean
-        get() = _clicked
 
-    private val _starttext = MutableLiveData<String>("Start")
-    val starttext: LiveData<String>
-        get() = _starttext
+    private val _penaltylayout = MutableLiveData<Boolean>(false)
+    val penaltylayout: LiveData<Boolean>
+        get() = _penaltylayout
 
-    private val _background = MutableLiveData<Boolean>()
-    val background: LiveData<Boolean>
-        get() = _background
+    private val _golayout = MutableLiveData<Boolean>(true)
+    val golayout: LiveData<Boolean>
+        get() = _golayout
+
+    private val _green = MutableLiveData<Boolean>(false)
+    val green: LiveData<Boolean>
+        get() = _green
 
     private fun getNextGame() {
-
-
-        if(_currentTag == "green") {
-            _currentTag = "white"
-            _background.value = false
-            timer.cancel()
-            timer()
-            timer.start()
+        timer.cancel()
+        if(_green.value == true) {
             _end = System.currentTimeMillis().toInt()
-            _reactiontime = end - start
-
-
-
-            _averagereactiontime += (_reactiontime / ROUNDS)
+            _reactiontime += (_end - _start)
             _currentFirstGameCount.value = (_currentFirstGameCount.value)?.inc()
-            if(_currentFirstGameCount.value!! > ROUNDS){
-                timer.cancel()
-            }
-
-        }
-        else if(_currentTag == "white" && !clicked){
-            _clicked = !_clicked
-            timer()
+            _green.value = false
+            _golayout.value = true
+            _randommillisecond = 2000L
             timer.start()
-            _starttext.value = ""
-
         }
-        else if(_currentTag == "white" && clicked) {
-            _background.value = false
+        else {
+            _reactiontime += 1000
             timer.cancel()
-            timer()
-            timer.start()
-            _reactiontime = 1000
-
-            _averagereactiontime += (_reactiontime / ROUNDS)
             _currentFirstGameCount.value = (_currentFirstGameCount.value)?.inc()
-            if(_currentFirstGameCount.value!! > ROUNDS){
-                timer.cancel()
-            }
-
+            _penaltylayout.value = true
+            timerforpenalty.start()
         }
 
     }
+    fun starttimer(){
+        _golayout.value = true
+        timer()
+        timer.start()
+    }
     fun timer(){
-        timer = object : CountDownTimer(5000, 1000) {
+
+        timer = object : CountDownTimer(_randommillisecond, 100) {
 
             override fun onTick(millisUntilFinished: Long) {
+                if(_randommillisecond - 500 > millisUntilFinished){
+                    _golayout.value = false
+                }
             }
 
             override fun onFinish() {
-                if(_currentTag == "white"){
-                    _currentTag = "green"
-                    _start = System.currentTimeMillis().toInt()
-                    _background.value = true
+                if(_green.value == false){
+                    _green.value = true
                 }
+                _start =System.currentTimeMillis().toInt()
+            }
+        }
+        timerforpenalty = object : CountDownTimer(2000, 1000) {
+
+            override fun onTick(millisUntilFinished: Long) {
+
+            }
+
+            override fun onFinish() {
+               _penaltylayout.value = false
+                _golayout.value = true
+                _randommillisecond = 2000L
+                timer.start()
+
             }
         }
     }
+    fun changerounds(){
+        if(GameSettingsRepository.getInstance().isRatingModeEnabled == true){
+            ROUNDS = 1
+        }
+    }
 
-
-
+    fun getNextNavDestination(): Int {
+        if (GameSettingsRepository.getInstance().remainingDestinations.isEmpty()) {
+            GameSettingsRepository.getInstance().remainingDestinations.addAll(GameSettingsRepository.getInstance().destinations)
+            // or whatever logic you want to do when all destinations have been used
+        }
+        val destination = GameSettingsRepository.getInstance().remainingDestinations.random()
+        GameSettingsRepository.getInstance().remainingDestinations.remove(destination)
+        return destination
+    }
 
     fun reinitializeData() {
         _currentFirstGameCount.value = 1
-        _start = 0
-        _currentTag = "white"
-        _end = 0
-        _background.value = false
-        _clicked = false
-        _starttext.value = "Start"
         _reactiontime = 0
         _averagereactiontime = 0
     }
-    private fun finalresult(){
+    fun finalresult(){
+        _averagereactiontime = reactiontime / ROUNDS
         val result = Result(0, "$_averagereactiontime milliseconds", convertLongToDateString(System.currentTimeMillis()), Type.ReactionTime)
         // Add Data to Database
         addResult(result)
@@ -152,15 +159,8 @@ fun addResult(result: Result){
             .format(systemTime).toString()
     }
 
-
-    fun nextGame(): Boolean {
-       return if( _currentFirstGameCount.value!! < ROUNDS) {
-           getNextGame()
-           true
-       }
-        else{
-            finalresult()
-            false
-        }
+    fun onStart() {
+        getNextGame()
     }
+
 }

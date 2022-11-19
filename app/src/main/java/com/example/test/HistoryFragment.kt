@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.data.Result
@@ -54,6 +55,10 @@ class HistoryFragment : Fragment() {
                 adapter.submitList(it)
             }
         })
+
+        binding.toolbar.close.setOnClickListener{
+            this.findNavController().navigate(R.id.fragment_training)
+        }
 
         return binding.root
 

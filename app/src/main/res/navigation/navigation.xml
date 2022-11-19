@@ -14,11 +14,10 @@
         <action
             android:id="@+id/action_trainingFragment_to_firstGameFragment"
             app:destination="@id/fragment_first_game"
-            app:popUpToInclusive="false" />
+            app:popUpTo="@id/fragment_training" />
         <action
             android:id="@+id/action_fragment_training_to_secondGameFragment"
-            app:destination="@id/fragment_second_game"
-            app:popUpToInclusive="false" />
+            app:destination="@id/fragment_second_game" />
         <action
             android:id="@+id/action_fragment_training_to_fragment_history"
             app:destination="@id/fragment_history" />
@@ -39,6 +38,10 @@
         android:label="fragment_first_game"
         tools:layout="@layout/fragment_first_game" >
 
+        <action
+            android:id="@+id/action_fragment_first_game_to_endGameFragment"
+            app:destination="@id/endGameFragment"
+            app:popUpTo="@id/fragment_training" />
     </fragment>
     <fragment
         android:id="@+id/fragment_second_game"
@@ -46,6 +49,9 @@
         android:label="fragment_second_game"
         tools:layout="@layout/fragment_second_game" >
 
+        <action
+            android:id="@+id/action_fragment_second_game_to_endGameFragment"
+            app:destination="@id/endGameFragment" />
     </fragment>
     <fragment
         android:id="@+id/fragment_history"
@@ -63,6 +69,18 @@
         android:label="fragment_third_game"
         tools:layout="@layout/fragment_third_game">
 
+        <action
+            android:id="@+id/action_fragment_third_game_to_endGameFragment"
+            app:destination="@id/endGameFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/endGameFragment"
+        android:name="com.example.test.EndGameFragment"
+        android:label="fragment_end_game"
+        tools:layout="@layout/fragment_end_game" >
+        <argument
+            android:name="game"
+            app:argType="integer" />
     </fragment>
 
 </navigation>

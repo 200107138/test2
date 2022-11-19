@@ -17,6 +17,6 @@
 package com.example.test
 
 
-const val ROUNDS = 3
+var ROUNDS = 3
 
 // List with all the words for the Game

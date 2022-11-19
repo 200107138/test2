@@ -27,9 +27,29 @@ class FirstGameFragment : Fragment() {
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_first_game, container, false)
         binding.gameViewModel = viewModel
-
+        viewModel.changerounds()
         binding.maxNoOfWords = ROUNDS
 
+        viewModel.currentFirstGameCount.observe(viewLifecycleOwner) { it ->
+            it?.let {
+                // Here, I'm calling a new function named setLoaderVisibility
+                if(viewModel.currentFirstGameCount.value!! > ROUNDS){
+                    if(GameSettingsRepository.getInstance().isRatingModeEnabled){
+                        this.findNavController().navigate(
+                          viewModel.getNextNavDestination())
+                    }
+                    else {
+                        viewModel.finalresult()
+                        viewModel.reinitializeData()
+                        this.findNavController().navigate(
+                            FirstGameFragmentDirections
+                                .actionFragmentFirstGameToEndGameFragment(R.id.fragment_first_game)
+                        )
+                    }
+                }
+
+            }
+        }
         return binding.root
     }
 
@@ -38,59 +58,16 @@ class FirstGameFragment : Fragment() {
 
 
         // Setup a click listener for the Submit and Skip buttons.
-        binding.firstgamestarttext.setOnClickListener {
-
-            onClickStart()
-
-        }
+        viewModel.starttimer()
         binding.toolbar.close.setOnClickListener{
-            findNavController().popBackStack()
+            this.findNavController().navigate(R.id.fragment_training)
         }
         binding.lifecycleOwner = viewLifecycleOwner
     }
 
-    private fun onClickStart() {
-
-            if (viewModel.nextGame()) {
-                if(viewModel.reactiontime == 1000) {
-                    Toast.makeText(context, "Penalty! +1s", Toast.LENGTH_LONG)
-                        .show()
-                }
-            }
-            else{
-                showFinalScoreDialog()
-            }
 
 
 
-
-    }
-
-
-
-
-    private fun showFinalScoreDialog() {
-        MaterialAlertDialogBuilder(requireContext())
-            .setTitle(getString(R.string.first_game_result))
-            .setMessage(getString(R.string.average_time, viewModel.averagereactiontime))
-            .setCancelable(false)
-            .setNegativeButton(getString(R.string.exit)) { _, _ ->
-                exitGame()
-            }
-            .setPositiveButton(getString(R.string.play_again)) { _, _ ->
-                restartGame()
-            }
-            .show()
-    }
-
-    private fun exitGame() {
-        findNavController().popBackStack()
-    }
-
-    private fun restartGame() {
-        viewModel.reinitializeData()
-
-    }
 
 
 }
