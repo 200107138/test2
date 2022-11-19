@@ -51,7 +51,7 @@ class SecondGameFragment : Fragment() {
 
         }
         binding.toolbar.close.setOnClickListener{
-            findNavController().popBackStack()
+            findNavController().navigateUp()
         }
         binding.lifecycleOwner = viewLifecycleOwner
     }

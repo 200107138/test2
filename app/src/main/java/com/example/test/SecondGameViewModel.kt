@@ -83,6 +83,10 @@ class SecondGameViewModel(application: Application): AndroidViewModel(applicatio
     val clicked: LiveData<Boolean>
         get() = _clicked
 
+    fun onNavigateComplete() {
+
+    }
+
     private fun getNextGame() {
         _clicked.value = true
         _starttext.value = ""
@@ -90,7 +94,6 @@ class SecondGameViewModel(application: Application): AndroidViewModel(applicatio
         timer.start()
     }
     fun button1clicked(){
-
         if(_randomfirstnumber != 0 && _randomsecondnumber != 0){
             if (randomfirstnumber > randomsecondnumber){
                 _end = System.currentTimeMillis().toInt()
@@ -185,7 +188,8 @@ class SecondGameViewModel(application: Application): AndroidViewModel(applicatio
         _starttext.value = "Start"
     }
     private fun finalresult(){
-        val result = Result(0, "$_averagereactiontime milliseconds", convertLongToDateString(System.currentTimeMillis()), Type.PeripheralVision)
+        val result = Result(
+            id = 0, "$_averagereactiontime milliseconds", convertLongToDateString(System.currentTimeMillis()), Type.PeripheralVision)
         // Add Data to Database
         addResult(result)
     }

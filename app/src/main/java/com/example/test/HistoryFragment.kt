@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -15,33 +16,43 @@ import com.example.test.data.Result
 import com.example.test.data.Type
 import com.example.test.databinding.FragmentHistoryBinding
 
-class HistoryFragment : Fragment(), ListAdapter.OnItemClickListener {
+class HistoryFragment : Fragment() {
+    lateinit var mUserViewModel: HistoryViewModel
+    lateinit var binding: FragmentHistoryBinding
+    val args: HistoryFragmentArgs by navArgs()
 
-    private lateinit var mUserViewModel: HistoryViewModel
-    private lateinit var binding: FragmentHistoryBinding
-    private val adapter = ListAdapter(this)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
+
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_history, container, false)
         // Recyclerview
 
-        val recyclerView = binding.recyclerview
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        val adapter = ResultAdapter(ResultListener { result ->
+            mUserViewModel.deleteUser(result)
+
+        })
+
+        binding.recyclerview.adapter = adapter
+        binding.setLifecycleOwner(this)
+        binding.recyclerview.layoutManager = LinearLayoutManager(requireContext())
 
         // UserViewModel
         mUserViewModel = ViewModelProvider(
             this, HistoryViewModelFactory(
                 requireActivity().application,
-                HistoryFragmentArgs.fromBundle(this.arguments as Bundle).type,
+                args.type,
             )
         )[HistoryViewModel::class.java]
-        mUserViewModel.readAllData.observe(viewLifecycleOwner, Observer { result ->
-            adapter.setData(result)
+
+        mUserViewModel.readAllData.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.submitList(it)
+            }
         })
 
         return binding.root
@@ -49,12 +60,6 @@ class HistoryFragment : Fragment(), ListAdapter.OnItemClickListener {
     }
 
 
-    @SuppressLint("NotifyDataSetChanged")
-    override fun onItemClick(result: Result) {
-        mUserViewModel.deleteUser(result)
-
-        adapter.notifyDataSetChanged()
-    }
 }
 
 
