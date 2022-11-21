@@ -33,6 +33,7 @@ class ResultAdapter(val clickListener: ResultListener): ListAdapter<Result, Resu
             binding.result = item
             binding.clickListener = clickListener
             binding.executePendingBindings()
+            binding.idTxt.text = (adapterPosition + 1).toString()
         }
 
         companion object {
@@ -54,7 +55,7 @@ class ResultDiffCallback : DiffUtil.ItemCallback<Result>() {
 
 
     override fun areContentsTheSame(oldItem: Result, newItem: Result): Boolean {
-        return oldItem == newItem
+        return oldItem == newItem && oldItem.index == newItem.index
     }
 
 

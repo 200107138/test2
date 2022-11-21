@@ -60,7 +60,7 @@ class FirstGameFragment : Fragment() {
         // Setup a click listener for the Submit and Skip buttons.
         viewModel.starttimer()
         binding.toolbar.close.setOnClickListener{
-            this.findNavController().navigate(R.id.fragment_training)
+            this.findNavController().navigateUp()
         }
         binding.lifecycleOwner = viewLifecycleOwner
     }

@@ -31,7 +31,6 @@
             android:fontFamily="@font/mavenprobold"
             android:textSize="40sp"
             android:textStyle="bold"
-            app:idText="@{result}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

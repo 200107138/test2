@@ -24,7 +24,12 @@ class HistoryViewModel(
 ) : AndroidViewModel(application) {
     val resultDao = ResultDatabase.getDatabase(application).resultDao()
     private val repository: ResultRepository = ResultRepository(resultDao)
-    val readAllData = resultDao.readAllData(type)
+    val readAllData = resultDao.readAllData(type).map { dbResults ->
+        dbResults.mapIndexed { index, value ->
+            value.index = index + 1
+            value
+        }
+    }
 
 
     fun deleteUser(result: Result) {
