@@ -55,7 +55,7 @@ class ResultDiffCallback : DiffUtil.ItemCallback<Result>() {
 
 
     override fun areContentsTheSame(oldItem: Result, newItem: Result): Boolean {
-        return oldItem == newItem && oldItem.index == newItem.index
+        return oldItem == newItem
     }
 
 

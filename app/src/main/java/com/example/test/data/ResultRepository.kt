@@ -9,10 +9,10 @@ class ResultRepository(private val resultDao: ResultDao) {
 //    val readAllData: LiveData<List<Result>> = resultDao.readAllData()
 
     suspend fun addResult(result: Result){
-        resultDao.addResult(result)
+        resultDao.addResult(result.toDbModel())
     }
     suspend fun deleteResult(result: Result){
-        resultDao.deleteResult(result)
+        resultDao.deleteResult(result.toDbModel())
     }
 
 }

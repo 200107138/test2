@@ -8,12 +8,12 @@ import com.example.test.data.Result
 interface ResultDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun addResult(result: Result)
+    suspend fun addResult(result: ResultDbModel)
 
     @Delete
-    suspend fun deleteResult(result: Result)
+    suspend fun deleteResult(result: ResultDbModel)
 
     @Query("SELECT * FROM result_table where type=:type ORDER BY id ASC")
-    fun readAllData(type: Type): LiveData<List<Result>>
+    fun readAllData(type: Type): LiveData<List<ResultDbModel>>
 
 }

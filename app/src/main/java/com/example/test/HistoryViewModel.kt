@@ -10,10 +10,7 @@ import android.os.CountDownTimer
 import androidx.core.graphics.drawable.toDrawable
 import androidx.lifecycle.*
 import com.example.test.ROUNDS
-import com.example.test.data.Result
-import com.example.test.data.ResultDatabase
-import com.example.test.data.ResultRepository
-import com.example.test.data.Type
+import com.example.test.data.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -25,9 +22,8 @@ class HistoryViewModel(
     val resultDao = ResultDatabase.getDatabase(application).resultDao()
     private val repository: ResultRepository = ResultRepository(resultDao)
     val readAllData = resultDao.readAllData(type).map { dbResults ->
-        dbResults.mapIndexed { index, value ->
-            value.index = index + 1
-            value
+        dbResults.mapIndexed { index, dbModel ->
+            dbModel.toModel(index = index + 1)
         }
     }
 

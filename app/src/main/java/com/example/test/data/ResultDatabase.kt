@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.example.test.data.Result
 import com.example.test.data.ResultDao
 
-@Database(entities = [Result::class], version = 1, exportSchema = false)
+@Database(entities = [ResultDbModel::class], version = 1, exportSchema = false)
 abstract class ResultDatabase : RoomDatabase() {
 
     abstract fun resultDao(): ResultDao
@@ -26,7 +26,9 @@ abstract class ResultDatabase : RoomDatabase() {
                     context.applicationContext,
                     ResultDatabase::class.java,
                     "result_database"
-                ).build()
+                )
+                    .fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
                 return instance
             }
