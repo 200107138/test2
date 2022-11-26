@@ -76,7 +76,9 @@ fun addResult(result: Result){
             _reactiontime += (_end - _start)
             _currentFirstGameCount.value = (_currentFirstGameCount.value)?.inc()
             _green.value = false
-            _golayout.value = true
+
+                _golayout.value = true
+
             _randommillisecond = 2000L
             timer.start()
         }
@@ -84,7 +86,9 @@ fun addResult(result: Result){
             _reactiontime += 1000
             timer.cancel()
             _currentFirstGameCount.value = (_currentFirstGameCount.value)?.inc()
-            _penaltylayout.value = true
+
+    _penaltylayout.value = true
+
             timerforpenalty.start()
         }
 
@@ -146,6 +150,7 @@ fun addResult(result: Result){
         _currentFirstGameCount.value = 1
         _reactiontime = 0
         _averagereactiontime = 0
+
     }
     fun finalresult(){
         _averagereactiontime = reactiontime / ROUNDS

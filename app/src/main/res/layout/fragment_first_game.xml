@@ -23,23 +23,6 @@
         tools:context="com.example.test.FirstGameFragment"
         android:background="#FAFAFA">
 
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/custom_action_bar" />
-
-        <TextView
-            android:id="@+id/firstgamecount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/mavenproregular"
-            android:text="@{gameViewModel.currentFirstGameCount != maxNoOfWords + 1? @string/game_round_count(gameViewModel.currentFirstGameCount, maxNoOfWords) : @string/game_round_count(maxNoOfWords, maxNoOfWords)}"
-            android:textAlignment="center"
-            android:textSize="25sp"
-            app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/toolbar"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Round 0 of 3" />
 
 
         <TextView
@@ -48,42 +31,20 @@
             android:layout_height="0dp"
             android:layout_margin="16dp"
             android:background="@{gameViewModel.green ? @drawable/first_game_start_green : @drawable/first_game_start}"
+            android:fontFamily="@font/mavenproregular"
             android:gravity="center"
             android:onClick="@{() -> gameViewModel.onStart()}"
             android:textSize="100sp"
             android:visibility="@{gameViewModel.penaltylayout || gameViewModel.golayout ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:fontFamily="@font/mavenproregular"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+
+
+            app:layout_constraintTop_toTopOf="parent"
             tools:background="@drawable/first_game_start" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#75000000"
-            android:gravity="center"
-            android:text="Penalty +1s"
-            android:textColor="#0F0F10"
-            android:textSize="50dp"
-            android:fontFamily="@font/mavenprobold"
-            android:visibility="@{gameViewModel.penaltylayout ? View.VISIBLE : View.GONE}"
-            app:layout_constraintBottom_toBottomOf="parent">
 
-        </TextView>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#75000000"
-            android:gravity="center"
-            android:textSize="50dp"
-            android:textColor="#0F0F10"
-            android:text="Go"
-            android:fontFamily="@font/mavenprobold"
-            android:visibility="@{gameViewModel.golayout ? View.VISIBLE : View.GONE}"
-            app:layout_constraintBottom_toBottomOf="parent">
 
-        </TextView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

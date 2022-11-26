@@ -14,7 +14,7 @@ import com.example.test.databinding.FragmentTrainingBinding
 class EndGameFragment : Fragment(R.layout.fragment_end_game) {
     // TODO: Rename and change types of parameters
     private lateinit var binding: FragmentEndGameBinding
-    val args: EndGameFragmentArgs by navArgs()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,7 +25,6 @@ class EndGameFragment : Fragment(R.layout.fragment_end_game) {
 
         binding.tester.setOnClickListener { view : View ->
             findNavController().popBackStack()
-            findNavController().navigate(args.game)
         }
 
         return binding.root

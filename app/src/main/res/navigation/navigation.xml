@@ -78,9 +78,6 @@
         android:name="com.example.test.EndGameFragment"
         android:label="fragment_end_game"
         tools:layout="@layout/fragment_end_game" >
-        <argument
-            android:name="game"
-            app:argType="integer" />
     </fragment>
 
 </navigation>

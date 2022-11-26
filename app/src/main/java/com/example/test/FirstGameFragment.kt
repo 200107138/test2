@@ -1,17 +1,18 @@
 package com.example.test
 
+import android.graphics.Color
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
+import android.view.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.test.databinding.FragmentFirstGameBinding
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 
 class FirstGameFragment : Fragment() {
@@ -30,22 +31,64 @@ class FirstGameFragment : Fragment() {
         viewModel.changerounds()
         binding.maxNoOfWords = ROUNDS
 
+        val goview = layoutInflater.inflate(R.layout.go, null)
+        val penaltyview = layoutInflater.inflate(R.layout.penalty, null)
+        val builder = AlertDialog.Builder(requireContext())
+        val penaltybuilder = AlertDialog.Builder(requireContext())
+        builder.setView(goview)
+        penaltybuilder.setView(penaltyview)
+        val dialog = builder.create()
+        val penaltydialog = penaltybuilder.create()
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        penaltydialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        viewModel.golayout.observe(viewLifecycleOwner) { it ->
+            it?.let {
+                // Here, I'm calling a new function named setLoaderVisibility
+                if(it == true){
+
+                    dialog.show()
+                }
+                else{
+
+                    dialog.dismiss()
+                }
+
+            }
+        }
+        viewModel.penaltylayout.observe(viewLifecycleOwner) { it ->
+            it?.let {
+                // Here, I'm calling a new function named setLoaderVisibility
+                if(it == true){
+                    penaltydialog.show()
+                }
+                else {
+
+                    penaltydialog.dismiss()
+                }
+
+            }
+        }
         viewModel.currentFirstGameCount.observe(viewLifecycleOwner) { it ->
             it?.let {
                 // Here, I'm calling a new function named setLoaderVisibility
-                if(viewModel.currentFirstGameCount.value!! > ROUNDS){
+                if(it > ROUNDS){
                     if(GameSettingsRepository.getInstance().isRatingModeEnabled){
                         this.findNavController().navigate(
                           viewModel.getNextNavDestination())
                     }
                     else {
                         viewModel.finalresult()
-                        viewModel.reinitializeData()
+
                         this.findNavController().navigate(
                             FirstGameFragmentDirections
-                                .actionFragmentFirstGameToEndGameFragment(R.id.fragment_first_game)
+                                .actionFragmentFirstGameToEndGameFragment()
                         )
+
                     }
+                }
+                else{
+                    (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.game_round_count, viewModel.currentFirstGameCount.value, ROUNDS)
                 }
 
             }
@@ -56,12 +99,36 @@ class FirstGameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        val menuHost: MenuHost = requireActivity()
         // Setup a click listener for the Submit and Skip buttons.
         viewModel.starttimer()
-        binding.toolbar.close.setOnClickListener{
-            this.findNavController().navigateUp()
-        }
+
+
+
+
+
+        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.game_round_count, 3, 2)
+
+        menuHost.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                // Add menu items here
+
+            }
+
+
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                // Handle the menu selection
+                return when (menuItem.itemId) {
+                    android.R.id.home -> {
+                        activity?.onBackPressed()
+                        true
+                    }
+
+                    else -> false
+                }
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
         binding.lifecycleOwner = viewLifecycleOwner
     }
 
