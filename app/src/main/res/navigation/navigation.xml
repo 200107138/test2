@@ -79,5 +79,15 @@
         android:label="fragment_end_game"
         tools:layout="@layout/fragment_end_game" >
     </fragment>
+    <fragment
+        android:id="@+id/fragment_network"
+        android:name="com.example.test.NetworkFragment"
+        android:label="fragment_network"
+        tools:layout="@layout/fragment_network" />
+    <fragment
+        android:id="@+id/fragment_multiplayer"
+        android:name="com.example.test.MultiplayerFragment"
+        android:label="fragment_multiplayer"
+        tools:layout="@layout/fragment_multiplayer" />
 
 </navigation>

@@ -7,7 +7,10 @@
     <item android:title="Rating"
         android:icon="@drawable/ic_baseline_data_saver_off_24"
         android:id="@+id/fragment_rating"/>
-    <item android:title="Settings"
-        android:icon="@drawable/ic_baseline_settings_24"
-        android:id="@+id/fragment_settings"/>
+    <item android:title="Network"
+        android:icon="@drawable/ic_outline_public_24"
+        android:id="@+id/fragment_network"/>
+    <item android:title="Multiplayer"
+        android:icon="@drawable/ic_outline_groups_3_24"
+        android:id="@+id/fragment_multiplayer"/>
 </menu>

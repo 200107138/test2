@@ -56,9 +56,6 @@ class HistoryFragment : Fragment() {
             }
         })
 
-        binding.toolbar.close.setOnClickListener{
-            this.findNavController().navigate(R.id.fragment_training)
-        }
 
         return binding.root
 

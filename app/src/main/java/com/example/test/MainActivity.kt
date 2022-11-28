@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         })
         NavigationUI.setupWithNavController(binding.bottomBar, navController)
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if(destination.id == R.id.fragment_training || destination.id == R.id.fragment_rating) {
+            if(destination.id == R.id.fragment_training || destination.id == R.id.fragment_rating || destination.id == R.id.fragment_network || destination.id == R.id.fragment_multiplayer) {
            binding.myToolbar.visibility = View.GONE
                 binding.bottomBar.visibility = View.VISIBLE
             } else {

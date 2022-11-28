@@ -69,6 +69,7 @@ fun addResult(result: Result){
     val green: LiveData<Boolean>
         get() = _green
 
+    @SuppressLint("SuspiciousIndentation")
     private fun getNextGame() {
         timer.cancel()
         if(_green.value == true) {
@@ -77,7 +78,7 @@ fun addResult(result: Result){
             _currentFirstGameCount.value = (_currentFirstGameCount.value)?.inc()
             _green.value = false
 
-                _golayout.value = true
+
 
             _randommillisecond = 2000L
             timer.start()
@@ -87,7 +88,7 @@ fun addResult(result: Result){
             timer.cancel()
             _currentFirstGameCount.value = (_currentFirstGameCount.value)?.inc()
 
-    _penaltylayout.value = true
+
 
             timerforpenalty.start()
         }
@@ -103,9 +104,7 @@ fun addResult(result: Result){
         timer = object : CountDownTimer(_randommillisecond, 100) {
 
             override fun onTick(millisUntilFinished: Long) {
-                if(_randommillisecond - 500 > millisUntilFinished){
-                    _golayout.value = false
-                }
+                _golayout.value = _randommillisecond - 500 < millisUntilFinished
             }
 
             override fun onFinish() {
@@ -118,7 +117,7 @@ fun addResult(result: Result){
         timerforpenalty = object : CountDownTimer(2000, 1000) {
 
             override fun onTick(millisUntilFinished: Long) {
-
+                _penaltylayout.value = true
             }
 
             override fun onFinish() {

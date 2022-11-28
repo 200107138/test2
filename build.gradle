@@ -20,6 +20,7 @@ buildscript {
     ext.nav_version = "2.5.3"
     ext.kotlin_version = "1.7.10"
     ext.room_version = "2.4.3"
+    ext.version_retrofit = "2.9.0"
     repositories {
         google()
         mavenCentral()
