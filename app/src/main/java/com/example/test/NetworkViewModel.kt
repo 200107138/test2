@@ -52,15 +52,13 @@ class NetworkViewModel : ViewModel() {
      * Sets the value of the status LiveData to the Mars API status.
      */
     private fun getMarsRealEstateProperties() {
-        Api.retrofitService.getProperties().enqueue(
-            object: Callback<String> {
-                override fun onResponse(call: Call<String>, response: Response<String>
-                ) {
-                    _response.value = response.body()
-                }
-                override fun onFailure(call: Call<String>, t: Throwable) {
-                    _response.value = "Failure: " + t.message
-                }
-            })
+        viewModelScope.launch {
+            try {
+                val listResult = Api.retrofitService.getProperties()
+                _response.value = "Success: ${listResult.size} Mars properties retrieved"
+            } catch (e: Exception) {
+                _response.value = "Failure: ${e.message}"
+            }
+        }
     }
 }
