@@ -1,20 +1,22 @@
 package com.example.test
 
-import android.annotation.SuppressLint
 import android.app.Application
-import android.graphics.drawable.Drawable
-import android.os.CountDownTimer
 import androidx.lifecycle.*
-import com.example.test.data.Result
-import com.example.test.data.ResultDatabase
-import com.example.test.data.ResultRepository
-import com.example.test.data.Type
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
+import com.example.test.data.*
 
 
 class RatingViewModel(application: Application): AndroidViewModel(application){
+
+    val resultDao = ResultDatabase.getDatabase(application).resultDao()
+    var sum = 0
+    private val repository: ResultRepository = ResultRepository(resultDao)
+
+    val readAdllData = resultDao.readAlllData(Type.ReactionTime)
+    fun avgReactionTime(){
+        sum = readAdllData.value?.sum()!! / readAdllData.value!!.size
+    }
+
+
     fun getNextNavDestination(): Int {
         if (GameSettingsRepository.getInstance().remainingDestinations.isEmpty()) {
             GameSettingsRepository.getInstance().remainingDestinations.addAll(GameSettingsRepository.getInstance().destinations)

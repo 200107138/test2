@@ -23,7 +23,7 @@ class EndGameFragment : Fragment(R.layout.fragment_end_game) {
         binding = FragmentEndGameBinding.inflate(inflater, container, false)
 
 
-        binding.tester.setOnClickListener { view : View ->
+        binding.tester.setOnClickListener {
             findNavController().popBackStack()
         }
 

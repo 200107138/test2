@@ -32,6 +32,7 @@ class HistoryViewModel(
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteResult(result)
         }
+
     }
 
 

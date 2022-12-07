@@ -1,5 +1,6 @@
 package com.example.test
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -11,15 +12,24 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.test.databinding.ActivityMainBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        auth = FirebaseAuth.getInstance()
+
+
+
+
+
         val navController = this.findNavController(R.id.fragmentContainerView)
         setSupportActionBar(findViewById(R.id.my_toolbar))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -39,7 +49,7 @@ class MainActivity : AppCompatActivity() {
         })
         NavigationUI.setupWithNavController(binding.bottomBar, navController)
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if(destination.id == R.id.fragment_training || destination.id == R.id.fragment_rating || destination.id == R.id.fragment_network || destination.id == R.id.fragment_multiplayer) {
+            if(destination.id == R.id.fragment_training || destination.id == R.id.fragment_rating || destination.id == R.id.fragment_network || destination.id == R.id.fragment_multiplayer || destination.id == R.id.fragment_settings) {
            binding.myToolbar.visibility = View.GONE
                 binding.bottomBar.visibility = View.VISIBLE
             } else {
@@ -47,6 +57,7 @@ class MainActivity : AppCompatActivity() {
                 binding.bottomBar.visibility = View.GONE
             }
         }
+
 
     }
 }

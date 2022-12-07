@@ -5,10 +5,7 @@ import android.app.Application
 import android.graphics.drawable.Drawable
 import android.os.CountDownTimer
 import androidx.lifecycle.*
-import com.example.test.data.Result
-import com.example.test.data.ResultDatabase
-import com.example.test.data.ResultRepository
-import com.example.test.data.Type
+import com.example.test.data.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -153,7 +150,7 @@ fun addResult(result: Result){
     }
     fun finalresult(){
         _averagereactiontime = reactiontime / ROUNDS
-        val result = Result(0, "$_averagereactiontime milliseconds", convertLongToDateString(System.currentTimeMillis()), Type.ReactionTime)
+        val result = Result(0, _averagereactiontime, convertLongToDateString(System.currentTimeMillis()), Type.ReactionTime, Mode.Rating)
         // Add Data to Database
         addResult(result)
     }

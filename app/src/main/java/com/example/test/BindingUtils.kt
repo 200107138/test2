@@ -32,7 +32,7 @@ fun TextView.setIdText(item: Result?) {
 @BindingAdapter("timeText")
 fun TextView.setTimeText(item: Result?) {
     item?.let {
-        text = item.time
+        text = item.time.toString()
     }
 }
 

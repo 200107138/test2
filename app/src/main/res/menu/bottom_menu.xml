@@ -13,4 +13,7 @@
     <item android:title="Multiplayer"
         android:icon="@drawable/ic_outline_groups_3_24"
         android:id="@+id/fragment_multiplayer"/>
+    <item android:title="Settings"
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:id="@+id/fragment_settings"/>
 </menu>

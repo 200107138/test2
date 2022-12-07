@@ -8,17 +8,20 @@ import androidx.room.PrimaryKey
 data class ResultDbModel(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-    val time: String,
+    val time: Int,
     val date: String,
     val type: Type,
+    val mode: Mode
+
 )
 
 data class Result(
     val id: Int,
-    val time: String,
+    val time: Int,
     val date: String,
     val type: Type,
-    val index: Int = 0,
+    val mode: Mode,
+    val index: Int = 0
 )
 
 object ResultMapper {
@@ -28,6 +31,7 @@ object ResultMapper {
             time = dbModel.time,
             date = dbModel.date,
             type = dbModel.type,
+            mode = dbModel.mode,
             index = index,
         )
     }
@@ -38,6 +42,7 @@ object ResultMapper {
             time = dbModel.time,
             date = dbModel.date,
             type = dbModel.type,
+            mode = dbModel.mode
         )
     }
 }
@@ -45,6 +50,7 @@ object ResultMapper {
 fun ResultDbModel.toModel(index: Int = 0): Result {
     return ResultMapper.mapToResult(this, index)
 }
+
 
 fun Result.toDbModel(): ResultDbModel {
     return ResultMapper.mapToDbModel(this)
@@ -54,4 +60,8 @@ enum class Type {
     PeripheralVision,
     ReactionTime,
     Memory
+}
+enum class Mode {
+    Training,
+    Rating
 }

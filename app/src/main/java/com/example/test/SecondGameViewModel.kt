@@ -10,10 +10,7 @@ import android.os.CountDownTimer
 import androidx.core.graphics.drawable.toDrawable
 import androidx.lifecycle.*
 import com.example.test.ROUNDS
-import com.example.test.data.Result
-import com.example.test.data.ResultDatabase
-import com.example.test.data.ResultRepository
-import com.example.test.data.Type
+import com.example.test.data.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -189,7 +186,7 @@ class SecondGameViewModel(application: Application): AndroidViewModel(applicatio
     }
     private fun finalresult(){
         val result = Result(
-            id = 0, "$_averagereactiontime milliseconds", convertLongToDateString(System.currentTimeMillis()), Type.PeripheralVision)
+            id = 0, _averagereactiontime, convertLongToDateString(System.currentTimeMillis()), Type.PeripheralVision, Mode.Training)
         // Add Data to Database
         addResult(result)
     }

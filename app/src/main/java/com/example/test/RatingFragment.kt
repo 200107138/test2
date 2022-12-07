@@ -6,6 +6,7 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.test.databinding.FragmentRatingBinding
@@ -34,6 +35,12 @@ class RatingFragment : Fragment(R.layout.fragment_rating) {
             this.findNavController().navigate(
                 viewModel.getNextNavDestination())
         }
+        viewModel.readAdllData.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                viewModel.avgReactionTime()
+                binding.reactionTimeStat.text = viewModel.sum.toString()
+            }
+        })
 
 
         return binding.root
