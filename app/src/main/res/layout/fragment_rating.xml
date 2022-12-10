@@ -4,14 +4,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="ratingViewModel"
+            type="com.example.test.RatingViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FAFAFA"
-        tools:context=".RatingFragment">
+        tools:context="com.example.test.RatingFragment">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -57,7 +59,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_margin="16dp"
                                     android:fontFamily="@font/mavenproregular"
-                                    android:text="200"
+                                    android:text="fgf"
                                     android:textSize="32dp"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -225,7 +227,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/overallRating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
@@ -246,8 +248,8 @@
 
 
                     android:background="@drawable/ic_baseline_arrow_upward_24"
-                    app:layout_constraintStart_toEndOf="@+id/textView2"
-                    app:layout_constraintTop_toTopOf="@+id/textView2">
+                    app:layout_constraintStart_toEndOf="@+id/overallRating"
+                    app:layout_constraintTop_toTopOf="@+id/overallRating">
 
                 </TextView>
             </androidx.constraintlayout.widget.ConstraintLayout>

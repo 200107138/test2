@@ -130,11 +130,17 @@ fun addResult(result: Result){
         if(GameSettingsRepository.getInstance().isRatingModeEnabled == true){
             ROUNDS = 1
         }
+        if(GameSettingsRepository.getInstance().isRatingModeEnabled == false){
+            ROUNDS = 3
+        }
     }
 
     fun getNextNavDestination(): Int {
         if (GameSettingsRepository.getInstance().remainingDestinations.isEmpty()) {
-            GameSettingsRepository.getInstance().remainingDestinations.addAll(GameSettingsRepository.getInstance().destinations)
+            for (i in GameSettingsRepository.getInstance().gameResults) {
+                addResult(i)
+            }
+            return R.id.fragment_rating
             // or whatever logic you want to do when all destinations have been used
         }
         val destination = GameSettingsRepository.getInstance().remainingDestinations.random()
@@ -150,9 +156,17 @@ fun addResult(result: Result){
     }
     fun finalresult(){
         _averagereactiontime = reactiontime / ROUNDS
-        val result = Result(0, _averagereactiontime, convertLongToDateString(System.currentTimeMillis()), Type.ReactionTime, Mode.Rating)
+        if(GameSettingsRepository.getInstance().isRatingModeEnabled == false){
+        val result = Result(0, _averagereactiontime, convertLongToDateString(System.currentTimeMillis()), Type.ReactionTime, Mode.Training)
         // Add Data to Database
         addResult(result)
+        }
+        else{
+            val result = Result(0, _averagereactiontime, convertLongToDateString(System.currentTimeMillis()), Type.ReactionTime, Mode.Rating)
+            // Add Data to Database
+
+            GameSettingsRepository.getInstance().gameResults.add(result)
+        }
     }
     @SuppressLint("SimpleDateFormat")
     fun convertLongToDateString(systemTime: Long): String {

@@ -17,5 +17,5 @@ interface ResultDao {
     fun readAllData(type: Type): LiveData<List<ResultDbModel>>
 
     @Query("SELECT time FROM result_table where type=:type ORDER BY id ASC")
-    fun readAlllData(type: Type): LiveData<List<Int>>
+    fun readAlllData(type: Type): List<Int>
 }

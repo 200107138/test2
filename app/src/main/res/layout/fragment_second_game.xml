@@ -19,24 +19,6 @@
 
         tools:context=".SecondGameFragment">
 
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/custom_action_bar" />
-
-        <TextView
-            android:id="@+id/secondgamecount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{@string/game_round_count(gameViewModel.currentSecondGameCount, maxNoOfWords)}"
-            android:textAlignment="center"
-            android:textSize="25sp"
-            android:fontFamily="@font/mavenproregular"
-            app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Round 0 of 3" />
-
 
         <TextView
             android:id="@+id/second_game_number1"
@@ -49,7 +31,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/dot"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/dot"
@@ -60,7 +42,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/second_game_number2"
@@ -73,22 +55,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/dot"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/start_second_game"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@drawable/first_game_start"
-            android:gravity="center"
-            android:text="@{gameViewModel.starttext}"
-            android:textSize="70sp"
-            android:fontFamily="@font/mavenproregular"
-            android:layout_margin="16dp"
-            android:visibility="@{gameViewModel.clicked ?  View.GONE : View.VISIBLE}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

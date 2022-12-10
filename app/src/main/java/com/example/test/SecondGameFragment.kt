@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -26,86 +27,53 @@ class SecondGameFragment : Fragment() {
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_second_game, container, false)
         binding.gameViewModel = viewModel
-
+        viewModel.changerounds()
         binding.maxNoOfWords = ROUNDS
 
+
+
+        viewModel.currentSecondGameCount.observe(viewLifecycleOwner) { it ->
+            it?.let {
+                // Here, I'm calling a new function named setLoaderVisibility
+                if(it > ROUNDS){
+                    if(GameSettingsRepository.getInstance().isRatingModeEnabled){
+                        viewModel.finalresult()
+                        this.findNavController().navigate(
+                            viewModel.getNextNavDestination())
+                    }
+                    else {
+                        viewModel.finalresult()
+
+                        this.findNavController().navigate(
+                            SecondGameFragmentDirections.actionFragmentSecondGameToEndGameFragment()
+                        )
+
+                    }
+                }
+                else{
+                    (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.game_round_count, viewModel.currentSecondGameCount.value, ROUNDS)
+                }
+
+            }
+        }
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.startSecondGame.setOnClickListener {
-
-            viewModel.startGame()
-
-        }
+        viewModel.getNextGame()
         binding.secondGameNumber1.setOnClickListener {
 
-            onClick1Button()
+            viewModel.button1clicked()
 
         }
         binding.secondGameNumber2.setOnClickListener {
 
-            onClick2Button()
+            viewModel.button1clicked()
 
-        }
-        binding.toolbar.close.setOnClickListener{
-            findNavController().navigateUp()
         }
         binding.lifecycleOwner = viewLifecycleOwner
     }
 
 
-
-    private fun onClick1Button() {
-
-        if (viewModel.nextGame1()) {
-            if(viewModel.reactiontime == 1000) {
-                Toast.makeText(context, "Penalty! +1s", Toast.LENGTH_LONG)
-                    .show()
-            }
-
-        } else {
-            showFinalScoreDialog()
-        }
-
-    }
-
-    private fun onClick2Button() {
-
-        if (viewModel.nextGame2()) {
-            if(viewModel.reactiontime == 1000) {
-                Toast.makeText(context, "Penalty! +1s", Toast.LENGTH_LONG)
-                    .show()
-            }
-
-        } else {
-            showFinalScoreDialog()
-        }
-
-    }
-
-    private fun showFinalScoreDialog() {
-        MaterialAlertDialogBuilder(requireContext())
-            .setTitle(getString(R.string.first_game_result))
-            .setMessage(getString(R.string.average_time, viewModel.averagereactiontime))
-            .setCancelable(false)
-            .setNegativeButton(getString(R.string.exit)) { _, _ ->
-                exitGame()
-            }
-            .setPositiveButton(getString(R.string.play_again)) { _, _ ->
-                restartGame()
-            }
-            .show()
-    }
-
-    private fun exitGame() {
-        findNavController().popBackStack()
-    }
-
-    private fun restartGame() {
-        viewModel.reinitializeData()
-
-    }
 }

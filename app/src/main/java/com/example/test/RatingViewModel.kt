@@ -3,21 +3,30 @@ package com.example.test
 import android.app.Application
 import androidx.lifecycle.*
 import com.example.test.data.*
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class RatingViewModel(application: Application): AndroidViewModel(application){
 
     val resultDao = ResultDatabase.getDatabase(application).resultDao()
-    var sum = 0
-    private val repository: ResultRepository = ResultRepository(resultDao)
+    private val _sum = MutableLiveData<String>("0")
+    val sum: LiveData<String>
+        get() = _sum
 
-    val readAdllData = resultDao.readAlllData(Type.ReactionTime)
-    fun avgReactionTime(){
-        sum = readAdllData.value?.sum()!! / readAdllData.value!!.size
+
+
+
+    fun avgReactionTime() {
+
+
+
     }
 
 
     fun getNextNavDestination(): Int {
+        GameSettingsRepository.getInstance().isRatingModeEnabled = true
         if (GameSettingsRepository.getInstance().remainingDestinations.isEmpty()) {
             GameSettingsRepository.getInstance().remainingDestinations.addAll(GameSettingsRepository.getInstance().destinations)
             // or whatever logic you want to do when all destinations have been used

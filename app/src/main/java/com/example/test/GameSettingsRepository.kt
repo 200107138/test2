@@ -1,5 +1,7 @@
 package com.example.test
 
+import com.example.test.data.*
+
 class GameSettingsRepository {
 
     var isRatingModeEnabled = false
@@ -10,6 +12,7 @@ class GameSettingsRepository {
     )
 
     var remainingDestinations = mutableListOf<Int>().apply { addAll(destinations) }
+    var gameResults = mutableListOf<Result>()
 
     companion object {
         @Volatile

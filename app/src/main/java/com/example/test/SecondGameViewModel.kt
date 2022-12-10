@@ -72,21 +72,9 @@ class SecondGameViewModel(application: Application): AndroidViewModel(applicatio
     val end: Int
         get() = _end
 
-    private val _starttext = MutableLiveData<String>("Start")
-    val starttext: LiveData<String>
-        get() = _starttext
 
-    private var _clicked = MutableLiveData<Boolean>(false)
-    val clicked: LiveData<Boolean>
-        get() = _clicked
+    fun getNextGame() {
 
-    fun onNavigateComplete() {
-
-    }
-
-    private fun getNextGame() {
-        _clicked.value = true
-        _starttext.value = ""
         timer()
         timer.start()
     }
@@ -172,7 +160,7 @@ class SecondGameViewModel(application: Application): AndroidViewModel(applicatio
 
 
     fun reinitializeData() {
-        _clicked.value = false
+
         _currentSecondGameCount.value = 1
         _start = 0
         _end = 0
@@ -182,13 +170,40 @@ class SecondGameViewModel(application: Application): AndroidViewModel(applicatio
         _randomsecondnumber = 0
         _reactiontime = 0
         _averagereactiontime = 0
-        _starttext.value = "Start"
+
     }
-    private fun finalresult(){
-        val result = Result(
-            id = 0, _averagereactiontime, convertLongToDateString(System.currentTimeMillis()), Type.PeripheralVision, Mode.Training)
-        // Add Data to Database
-        addResult(result)
+    fun getNextNavDestination(): Int {
+        if (GameSettingsRepository.getInstance().remainingDestinations.isEmpty()) {
+            for (i in GameSettingsRepository.getInstance().gameResults) {
+                addResult(i)
+            }
+            return R.id.fragment_rating
+            // or whatever logic you want to do when all destinations have been used
+        }
+        val destination = GameSettingsRepository.getInstance().remainingDestinations.random()
+        GameSettingsRepository.getInstance().remainingDestinations.remove(destination)
+        return destination
+    }
+    fun changerounds(){
+        if(GameSettingsRepository.getInstance().isRatingModeEnabled == true){
+            ROUNDS = 1
+        }
+        if(GameSettingsRepository.getInstance().isRatingModeEnabled == false){
+            ROUNDS = 3
+        }
+    }
+    fun finalresult(){
+        _averagereactiontime = reactiontime / ROUNDS
+        if(GameSettingsRepository.getInstance().isRatingModeEnabled == false){
+            val result = Result(0, _averagereactiontime, convertLongToDateString(System.currentTimeMillis()), Type.PeripheralVision, Mode.Training)
+            // Add Data to Database
+            addResult(result)
+        }
+        else{
+            val result = Result(0, _averagereactiontime, convertLongToDateString(System.currentTimeMillis()), Type.PeripheralVision, Mode.Rating)
+            // Add Data to Database
+            GameSettingsRepository.getInstance().gameResults.add(result)
+        }
     }
     @SuppressLint("SimpleDateFormat")
     fun convertLongToDateString(systemTime: Long): String {
@@ -196,30 +211,4 @@ class SecondGameViewModel(application: Application): AndroidViewModel(applicatio
             .format(systemTime).toString()
     }
 
-    fun nextGame1(): Boolean {
-        return if(_currentSecondGameCount.value!! < ROUNDS) {
-            button1clicked()
-            true
-        }else {
-            finalresult()
-            false
-        }
-
-
-    }
-    fun nextGame2(): Boolean {
-
-        return if(_currentSecondGameCount.value!! < ROUNDS) {
-            button2clicked()
-            true
-        }else {
-            finalresult()
-            false
-        }
-    }
-
-    fun startGame(): Boolean {
-        getNextGame()
-        return _currentSecondGameCount.value!! < ROUNDS
-    }
 }

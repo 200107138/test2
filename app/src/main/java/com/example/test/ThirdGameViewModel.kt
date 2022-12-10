@@ -97,7 +97,7 @@ class ThirdGameViewModel(application: Application): AndroidViewModel(application
     val clicked: LiveData<Boolean>
         get() = _clicked
 
-    private fun getNextGame(){
+    fun startGame(){
         _start = System.currentTimeMillis().toInt()
 
         _clicked.value = true
@@ -133,10 +133,11 @@ class ThirdGameViewModel(application: Application): AndroidViewModel(application
                             _clicked.value = false
                             drawable_array.shuffle()
                             _drawable_list.value = drawable_array
-                            _currentThirdGameCount.value = (_currentThirdGameCount.value)?.inc()
                             _end = System.currentTimeMillis().toInt()
                             _time = end - start
-                            _averagetime += (_time / ROUNDS)
+                            _averagetime += _time
+                            _currentThirdGameCount.value = (_currentThirdGameCount.value)?.inc()
+
 
                         }
 
@@ -185,25 +186,45 @@ class ThirdGameViewModel(application: Application): AndroidViewModel(application
         _time = 0
         _pair = 0
     }
-
-
+    fun changerounds(){
+        if(GameSettingsRepository.getInstance().isRatingModeEnabled == true){
+            ROUNDS = 1
+        }
+        if(GameSettingsRepository.getInstance().isRatingModeEnabled == false){
+            ROUNDS = 3
+        }
+    }
+    fun getNextNavDestination(): Int {
+        if (GameSettingsRepository.getInstance().remainingDestinations.isEmpty()) {
+            for (i in GameSettingsRepository.getInstance().gameResults) {
+                addResult(i)
+            }
+            return R.id.fragment_rating
+            // or whatever logic you want to do when all destinations have been used
+        }
+        val destination = GameSettingsRepository.getInstance().remainingDestinations.random()
+        GameSettingsRepository.getInstance().remainingDestinations.remove(destination)
+        return destination
+    }
     fun finalresult(){
-        val result = Result(0, _averagetime, convertLongToDateString(System.currentTimeMillis()), Type.Memory, Mode.Training)
-        // Add Data to Database
-        addResult(result)
+        _averagetime = _averagetime / ROUNDS
+        if(GameSettingsRepository.getInstance().isRatingModeEnabled == false){
+            val result = Result(0, _averagetime, convertLongToDateString(System.currentTimeMillis()), Type.Memory, Mode.Training)
+            // Add Data to Database
+            addResult(result)
+        }
+
+        else{
+            val result = Result(0, _averagetime, convertLongToDateString(System.currentTimeMillis()), Type.Memory, Mode.Rating)
+            // Add Data to Database
+            GameSettingsRepository.getInstance().gameResults.add(result)
+
+        }
     }
     @SuppressLint("SimpleDateFormat")
     fun convertLongToDateString(systemTime: Long): String {
         return SimpleDateFormat("HH:mm:ss'  'MMM.dd.yyyy")
             .format(systemTime).toString()
     }
-    fun startGame(): Boolean {
-        return if(_currentThirdGameCount.value!! <= ROUNDS) {
-            getNextGame()
-            true
-        }else {
 
-            false
-        }
-    }
 }

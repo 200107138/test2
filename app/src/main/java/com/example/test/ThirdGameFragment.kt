@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -28,17 +29,7 @@ class ThirdGameFragment : Fragment() {
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_third_game, container, false)
         binding.gameViewModel = viewModel
-        viewModel.currentThirdGameCount.observe(viewLifecycleOwner) { loading ->
-            loading?.let {
-                // Here, I'm calling a new function named setLoaderVisibility
-                    if(viewModel.currentThirdGameCount.value!! <= ROUNDS){}
-                    else {
-                        viewModel.finalresult()
-                        showFinalScoreDialog()
-                    }
-
-            }
-        }
+        viewModel.changerounds()
         binding.maxNoOfWords = ROUNDS
 
         return binding.root
@@ -49,43 +40,38 @@ class ThirdGameFragment : Fragment() {
         viewModel.shufflelist()
         binding.thirdGameStart.setOnClickListener {
 
-            if(viewModel.startGame()){}
-            else {
-            showFinalScoreDialog()
+            viewModel.startGame()
+
         }
-        }
-        binding.toolbar.close.setOnClickListener{
-            findNavController().popBackStack()
+
+
+        viewModel.currentThirdGameCount.observe(viewLifecycleOwner) { it ->
+            it?.let {
+                // Here, I'm calling a new function named setLoaderVisibility
+                if(it > ROUNDS){
+                    if(GameSettingsRepository.getInstance().isRatingModeEnabled){
+                        viewModel.finalresult()
+
+                        this.findNavController().navigate(
+                            viewModel.getNextNavDestination())
+                    }
+                    else {
+                        viewModel.finalresult()
+
+                        this.findNavController().navigate(
+                            ThirdGameFragmentDirections.actionFragmentThirdGameToEndGameFragment()
+                        )
+
+                    }
+                }
+                else{
+                    (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.game_round_count, viewModel.currentThirdGameCount.value, ROUNDS)
+                }
+
+            }
         }
 
         binding.lifecycleOwner = viewLifecycleOwner
     }
 
-
-
-
-
-
-    private fun showFinalScoreDialog() {
-        MaterialAlertDialogBuilder(requireContext())
-            .setTitle(getString(R.string.first_game_result))
-            .setMessage(getString(R.string.average_time, viewModel.averagetime))
-            .setCancelable(false)
-            .setNegativeButton(getString(R.string.exit)) { _, _ ->
-                exitGame()
-            }
-            .setPositiveButton(getString(R.string.play_again)) { _, _ ->
-                restartGame()
-            }
-            .show()
-    }
-
-    private fun exitGame() {
-        findNavController().popBackStack()
-    }
-
-    private fun restartGame() {
-        viewModel.reinitializeData()
-
-    }
 }

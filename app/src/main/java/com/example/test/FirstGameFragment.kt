@@ -74,6 +74,7 @@ class FirstGameFragment : Fragment() {
                 // Here, I'm calling a new function named setLoaderVisibility
                 if(it > ROUNDS){
                     if(GameSettingsRepository.getInstance().isRatingModeEnabled){
+                        viewModel.finalresult()
                         this.findNavController().navigate(
                           viewModel.getNextNavDestination())
                     }

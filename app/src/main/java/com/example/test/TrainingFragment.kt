@@ -22,11 +22,11 @@ class TrainingFragment : Fragment(R.layout.fragment_training) {
 
         binding.firstGameLauncher.setOnClickListener { view : View ->
             view.findNavController().navigate(TrainingFragmentDirections.actionTrainingFragmentToFirstGameFragment())
-
+            GameSettingsRepository.getInstance().isRatingModeEnabled = false
         }
         binding.secondGameLauncher.setOnClickListener { view : View ->
             view.findNavController().navigate(TrainingFragmentDirections.actionFragmentTrainingToSecondGameFragment())
-
+            GameSettingsRepository.getInstance().isRatingModeEnabled = false
         }
         binding.firstGameHistory.setOnClickListener { view : View ->
             view.findNavController().navigate(TrainingFragmentDirections.actionFragmentTrainingToFragmentHistory(Type.ReactionTime))
@@ -42,7 +42,7 @@ class TrainingFragment : Fragment(R.layout.fragment_training) {
         }
         binding.thirdGameLauncher.setOnClickListener { view : View ->
             view.findNavController().navigate(TrainingFragmentDirections.actionFragmentTrainingToFragmentThirdGame())
-
+            GameSettingsRepository.getInstance().isRatingModeEnabled = false
         }
 
 

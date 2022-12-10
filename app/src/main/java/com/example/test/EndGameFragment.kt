@@ -2,6 +2,7 @@ package com.example.test
 
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -33,8 +34,8 @@ class EndGameFragment : Fragment(R.layout.fragment_end_game) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        (activity as AppCompatActivity).supportActionBar?.title = "Result"
 
-        // Setup a click listener for the Submit and Skip buttons.
 
         binding.lifecycleOwner = viewLifecycleOwner
     }
