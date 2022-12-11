@@ -31,12 +31,10 @@ class SettingsFragment : Fragment() {
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_settings, container, false)
        auth = FirebaseAuth.getInstance()
-        binding.id.text = auth.currentUser?.uid
+        binding.uid.text = auth.currentUser?.uid
 
-        binding.signOut.setOnClickListener{
-            auth.signOut()
-            val intent = Intent(context, SignInActivity::class.java)
-            startActivity(intent)
+        binding.logout.setOnClickListener{
+
         }
         return binding.root
     }

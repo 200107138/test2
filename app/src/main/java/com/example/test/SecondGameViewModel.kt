@@ -84,18 +84,18 @@ class SecondGameViewModel(application: Application): AndroidViewModel(applicatio
                 _end = System.currentTimeMillis().toInt()
                 _randomfirstnumber = 0
                 _randomsecondnumber = 0
-                _currentSecondGameCount.value = (_currentSecondGameCount.value)?.inc()
                 _reactiontime = end - start
-                _averagereactiontime += (_reactiontime / ROUNDS)
+                _averagereactiontime += _reactiontime
+                _currentSecondGameCount.value = (_currentSecondGameCount.value)?.inc()
                 timer()
                 timer.start()
             }
             else{
                 _randomfirstnumber = 0
                 _randomsecondnumber = 0
-                _currentSecondGameCount.value = (_currentSecondGameCount.value)?.inc()
                 _reactiontime = 1000
-                _averagereactiontime += (_reactiontime / ROUNDS)
+                _averagereactiontime += _reactiontime
+                _currentSecondGameCount.value = (_currentSecondGameCount.value)?.inc()
                 timer()
                 timer.start()
             }
@@ -108,18 +108,18 @@ class SecondGameViewModel(application: Application): AndroidViewModel(applicatio
                 _end = System.currentTimeMillis().toInt()
                 _randomfirstnumber = 0
                 _randomsecondnumber = 0
-                _currentSecondGameCount.value = (_currentSecondGameCount.value)?.inc()
                 _reactiontime = end - start
-                _averagereactiontime += (_reactiontime / ROUNDS)
+                _averagereactiontime += _reactiontime
+                _currentSecondGameCount.value = (_currentSecondGameCount.value)?.inc()
                 timer()
                 timer.start()
             }
             else{
                 _randomfirstnumber = 0
                 _randomsecondnumber = 0
-                _currentSecondGameCount.value = (_currentSecondGameCount.value)?.inc()
                 _reactiontime = 1000
-                _averagereactiontime += (_reactiontime / ROUNDS)
+                _averagereactiontime += _reactiontime
+                _currentSecondGameCount.value = (_currentSecondGameCount.value)?.inc()
                 timer()
                 timer.start()
             }
@@ -193,7 +193,7 @@ class SecondGameViewModel(application: Application): AndroidViewModel(applicatio
         }
     }
     fun finalresult(){
-        _averagereactiontime = reactiontime / ROUNDS
+        _averagereactiontime = _averagereactiontime / ROUNDS
         if(GameSettingsRepository.getInstance().isRatingModeEnabled == false){
             val result = Result(0, _averagereactiontime, convertLongToDateString(System.currentTimeMillis()), Type.PeripheralVision, Mode.Training)
             // Add Data to Database
