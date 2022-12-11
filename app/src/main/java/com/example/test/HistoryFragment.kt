@@ -2,12 +2,14 @@ package com.example.test
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -60,7 +62,39 @@ class HistoryFragment : Fragment() {
         return binding.root
 
     }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        val menuHost: MenuHost = requireActivity()
+        // Setup a click listener for the Submit and Skip buttons.
+
+
+
+
+        (activity as AppCompatActivity).supportActionBar?.title = "History"
+
+        menuHost.addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                // Add menu items here
+
+            }
+
+
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                // Handle the menu selection
+                return when (menuItem.itemId) {
+                    android.R.id.home -> {
+                        activity?.onBackPressed()
+                        true
+                    }
+
+                    else -> false
+                }
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+        binding.lifecycleOwner = viewLifecycleOwner
+    }
 
 }
 

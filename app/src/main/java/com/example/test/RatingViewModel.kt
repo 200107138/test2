@@ -36,6 +36,7 @@ class RatingViewModel(application: Application): AndroidViewModel(application){
         return destination
     }
     fun fillDestinations(){
+        GameSettingsRepository.getInstance().gameResults.clear()
         GameSettingsRepository.getInstance().remainingDestinations =  mutableListOf<Int>().apply { addAll(GameSettingsRepository.getInstance().destinations) }
     }
 
