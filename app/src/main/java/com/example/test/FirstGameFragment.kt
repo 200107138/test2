@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
+import com.example.test.data.Type
 import com.example.test.databinding.FragmentFirstGameBinding
 
 
@@ -34,11 +35,16 @@ class FirstGameFragment : Fragment() {
         val goview = layoutInflater.inflate(R.layout.go, null)
         val penaltyview = layoutInflater.inflate(R.layout.penalty, null)
         val builder = AlertDialog.Builder(requireContext())
+
         val penaltybuilder = AlertDialog.Builder(requireContext())
+
+
         builder.setView(goview)
         penaltybuilder.setView(penaltyview)
         val dialog = builder.create()
+        dialog.setCancelable(false)
         val penaltydialog = penaltybuilder.create()
+        penaltydialog.setCancelable(false)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         penaltydialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
@@ -75,6 +81,7 @@ class FirstGameFragment : Fragment() {
                 if(it > ROUNDS){
                     if(GameSettingsRepository.getInstance().isRatingModeEnabled){
                         viewModel.finalresult()
+findNavController().popBackStack()
                         this.findNavController().navigate(
                           viewModel.getNextNavDestination())
                     }
@@ -83,7 +90,7 @@ class FirstGameFragment : Fragment() {
 
                         this.findNavController().navigate(
                             FirstGameFragmentDirections
-                                .actionFragmentFirstGameToEndGameFragment()
+                                .actionFragmentFirstGameToEndGameFragment(Type.ReactionTime, viewModel.reactiontime.toString())
                         )
 
                     }

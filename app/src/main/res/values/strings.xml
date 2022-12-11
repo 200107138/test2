@@ -45,6 +45,7 @@
     <string name="try_again">Try again!</string>
     <string name="start">Start</string>
     <string name="game_round_count">Round %d of %d</string>
+    <string name="game_result">%s milliseconds</string>
     <string name="first_game_description">Click on the frame as soon as the color changes, as soon as possible</string>
     <string name="second_game_description">Start looking at the red dot in the center. At some point, numbers will quickly appear in each of the frames and immediately disappear. You need to click on the square with the largest number as quickly as possible</string>
 </resources>

@@ -1,8 +1,7 @@
 package com.example.test
 
 data class Users(
-    var nickname: String? =null,
-    var firstGameRatingResult: List<Int>? = emptyList(),
-    var secondGameRatingResult: List<Int>? = emptyList(),
-    var thirdGameRatingResult: List<Int>? = emptyList(),
+    var uid: String? = null,
+    var score: Int? = null,
+    var nickname: String? =null
 )

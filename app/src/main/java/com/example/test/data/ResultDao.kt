@@ -13,9 +13,9 @@ interface ResultDao {
     @Delete
     suspend fun deleteResult(result: ResultDbModel)
 
-    @Query("SELECT * FROM result_table where type=:type ORDER BY id ASC")
-    fun readAllData(type: Type): LiveData<List<ResultDbModel>>
+    @Query("SELECT * FROM result_table where type=:type AND mode=:mode ORDER BY id ASC")
+    fun readAllData(type: Type, mode: Mode): LiveData<List<ResultDbModel>>
 
-    @Query("SELECT time FROM result_table where type=:type ORDER BY id ASC")
-    fun readAlllData(type: Type): List<Int>
+    @Query("SELECT time FROM result_table where type=:type AND mode=:mode ORDER BY id ASC")
+    fun readAlllData(type: Type, mode: Mode): List<Int>
 }

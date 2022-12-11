@@ -21,7 +21,7 @@ class HistoryViewModel(
 ) : AndroidViewModel(application) {
     val resultDao = ResultDatabase.getDatabase(application).resultDao()
     private val repository: ResultRepository = ResultRepository(resultDao)
-    val readAllData = resultDao.readAllData(type).map { dbResults ->
+    val readAllData = resultDao.readAllData(type, Mode.Training).map { dbResults ->
         dbResults.mapIndexed { index, dbModel ->
             dbModel.toModel(index = index + 1)
         }

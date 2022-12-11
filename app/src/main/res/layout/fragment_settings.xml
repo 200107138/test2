@@ -17,13 +17,13 @@
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:layout_marginTop="16dp"
             android:layout_marginLeft="32dp"
+            android:layout_marginTop="16dp"
             android:layout_marginRight="32dp"
             android:background="@drawable/white_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
+            app:layout_constraintTop_toBottomOf="@+id/google">
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -81,53 +81,54 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout4"
+            android:id="@+id/google"
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:layout_marginTop="16dp"
             android:layout_marginLeft="32dp"
+            android:layout_marginTop="16dp"
             android:layout_marginRight="32dp"
             android:background="@drawable/white_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_margin="16dp"
+                android:background="@drawable/google"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/nickname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+            </ImageView>
 
-                    android:text="Nickname"></TextView>
+            <TextView
+                android:id="@+id/rgr"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="Link Google Account"
+                app:layout_constraintBottom_toBottomOf="parent"
 
-                <TextView
-                    android:id="@+id/uid"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintTop_toTopOf="parent"></TextView>
 
-                    android:text="UID"></TextView>
-            </LinearLayout>
 
+            <Switch
+                android:id="@+id/log"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:checked="false"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"></Switch>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <Button
-            android:id="@+id/logout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="32dp"
-            android:text="Logout"
-            android:textColor="@color/white"
-            android:background="@drawable/gray_background"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:layout_editor_absoluteX="32dp" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.example.test.data.Mode
 import com.example.test.data.ResultDatabase
 import com.example.test.data.Type
 import com.example.test.databinding.FragmentRatingBinding
@@ -25,21 +26,18 @@ import kotlinx.coroutines.withContext
 class RatingFragment : Fragment() {
     private val viewModel: RatingViewModel by viewModels()
     private lateinit var binding: FragmentRatingBinding
-    private lateinit var auth : FirebaseAuth
-    private lateinit var db: ResultDatabase
-    var listFirstGame = mutableListOf<Int>()
-    var listSecondGame = mutableListOf<Int>()
-    var listThirdGame = mutableListOf<Int>()
 
-    val referencer= FirebaseDatabase.getInstance().reference.child("users")
+    private lateinit var db: ResultDatabase
+
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_rating, container, false)
-db = ResultDatabase.getDatabase(requireContext())
         val ad = binding.statBackground.background as AnimationDrawable
-        auth = FirebaseAuth.getInstance()
+        db = ResultDatabase.getDatabase(requireContext())
         ad.setEnterFadeDuration(10)
         ad.setExitFadeDuration(5000)
         ad.start()
@@ -52,43 +50,9 @@ db = ResultDatabase.getDatabase(requireContext())
 
 
 
-        if(auth.currentUser != null){
 
-            referencer.child(auth.currentUser!!.uid).addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    GlobalScope.launch {
-                        if(snapshot.hasChild("firstGameRatingResult")) {
-                            for (i: DataSnapshot in snapshot.child("firstGameRatingResult").children) {
-                                listFirstGame.add(
-                                    i.value.toString()
-                                        .filter { it.isLetterOrDigit() }.toInt()
-                                )
-                            }
-                            for (i: DataSnapshot in snapshot.child("secondGameRatingResult").children) {
-                                listSecondGame.add(
-                                    i.value.toString()
-                                        .filter { it.isLetterOrDigit() }.toInt()
-                                )
-                            }
-                            for (i: DataSnapshot in snapshot.child("thirdGameRatingResult").children) {
-                                listThirdGame.add(
-                                    i.value.toString()
-                                        .filter { it.isLetterOrDigit() }.toInt()
-                                )
-                            }
-
-                            displaydata(listFirstGame, listSecondGame, listThirdGame)
-                        }
-                    //prints "Do you have data? You'll love Firebase."
-                    }
-                }
-
-                override fun onCancelled(databaseError: DatabaseError) {}
-            })
-        }
-        else{
             readdata()
-        }
+
 
 
 
@@ -101,10 +65,10 @@ lateinit var dataFirstGame: List<Int>
         lateinit var dataSecondGame: List<Int>
         lateinit var dataThirdGame: List<Int>
 GlobalScope.launch {
-    dataFirstGame = db.resultDao().readAlllData(Type.ReactionTime)
+    dataFirstGame = db.resultDao().readAlllData(Type.ReactionTime, Mode.Rating)
 
-    dataSecondGame = db.resultDao().readAlllData(Type.PeripheralVision)
-    dataThirdGame = db.resultDao().readAlllData(Type.Memory)
+    dataSecondGame = db.resultDao().readAlllData(Type.PeripheralVision, Mode.Rating)
+    dataThirdGame = db.resultDao().readAlllData(Type.Memory, Mode.Rating)
     displaydata(dataFirstGame, dataSecondGame, dataThirdGame)
 }
     }
@@ -119,8 +83,14 @@ GlobalScope.launch {
 
                 val dataSum =
                     (dataFirstGame.sum() / dataFirstGame.size) + (dataSecondGame.sum() / dataSecondGame.size) + (dataThirdGame.sum() / dataThirdGame.size)
-                val overallRating = 99 * 16330 / dataSum
+                val overallRating = 99 * 5330 / dataSum
 
+                val dataSumExceptLast = (dataFirstGame.sum() - dataFirstGame.get(dataFirstGame.size - 1) / dataFirstGame.size - 1) + (dataSecondGame.sum() - dataSecondGame.get(dataSecondGame.size - 1) / dataSecondGame.size - 1) + (dataThirdGame.sum() - dataThirdGame.get(dataThirdGame.size - 1) / dataThirdGame.size - 1)
+                val overallRatingExceptLast = 99 * 5330 / dataSumExceptLast
+
+                if(overallRatingExceptLast > overallRating){
+                    binding.arrow.setBackgroundResource(R.drawable.ic_baseline_arrow_downward_24)
+                }
                 binding.overallRating.text = overallRating.toString()
                 binding.reactionTimeProgressBar.max = 100
                 val firstGameProgress = 130 * 100 / (dataFirstGame.sum() / dataFirstGame.size)
@@ -139,7 +109,7 @@ GlobalScope.launch {
                     .start()
 
                 binding.memoryProgressBar.max = 100
-                val thirdGameProgress = 16000 * 100 / (dataThirdGame.sum() / dataThirdGame.size)
+                val thirdGameProgress = 5000 * 100 / (dataThirdGame.sum() / dataThirdGame.size)
                 ObjectAnimator.ofInt(binding.memoryProgressBar, "progress", thirdGameProgress)
                     .setDuration(2000)
                     .start()

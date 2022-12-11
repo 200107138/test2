@@ -29,10 +29,6 @@ fun addResult(result: Result){
     private lateinit var timer: CountDownTimer
     private lateinit var timerforpenalty: CountDownTimer
 
-    private var _averagereactiontime = 0
-    val averagereactiontime: Int
-        get() = _averagereactiontime
-
     private val _currentFirstGameCount = MutableLiveData(1)
     val currentFirstGameCount: LiveData<Int>
         get() = _currentFirstGameCount
@@ -151,18 +147,17 @@ fun addResult(result: Result){
     fun reinitializeData() {
         _currentFirstGameCount.value = 1
         _reactiontime = 0
-        _averagereactiontime = 0
 
     }
     fun finalresult(){
-        _averagereactiontime = reactiontime / ROUNDS
+        _reactiontime = reactiontime / ROUNDS
         if(GameSettingsRepository.getInstance().isRatingModeEnabled == false){
-        val result = Result(0, _averagereactiontime, convertLongToDateString(System.currentTimeMillis()), Type.ReactionTime, Mode.Training)
+        val result = Result(0, _reactiontime, convertLongToDateString(System.currentTimeMillis()), Type.ReactionTime, Mode.Training)
         // Add Data to Database
         addResult(result)
         }
         else{
-            val result = Result(0, _averagereactiontime, convertLongToDateString(System.currentTimeMillis()), Type.ReactionTime, Mode.Rating)
+            val result = Result(0, _reactiontime, convertLongToDateString(System.currentTimeMillis()), Type.ReactionTime, Mode.Rating)
             // Add Data to Database
 
             GameSettingsRepository.getInstance().gameResults.add(result)

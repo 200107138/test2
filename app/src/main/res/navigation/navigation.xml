@@ -14,7 +14,7 @@
         <action
             android:id="@+id/action_trainingFragment_to_firstGameFragment"
             app:destination="@id/fragment_first_game"
-            app:popUpTo="@id/fragment_training" />
+ />
         <action
             android:id="@+id/action_fragment_training_to_secondGameFragment"
             app:destination="@id/fragment_second_game" />
@@ -51,7 +51,8 @@
 
         <action
             android:id="@+id/action_fragment_second_game_to_endGameFragment"
-            app:destination="@id/endGameFragment" />
+            app:destination="@id/endGameFragment"
+            app:popUpTo="@id/fragment_training" />
     </fragment>
     <fragment
         android:id="@+id/fragment_history"
@@ -71,19 +72,26 @@
 
         <action
             android:id="@+id/action_fragment_third_game_to_endGameFragment"
-            app:destination="@id/endGameFragment" />
+            app:destination="@id/endGameFragment"
+            app:popUpTo="@id/fragment_training" />
     </fragment>
     <fragment
         android:id="@+id/endGameFragment"
         android:name="com.example.test.EndGameFragment"
         android:label="fragment_end_game"
         tools:layout="@layout/fragment_end_game" >
+        <argument
+            android:name="type"
+            app:argType="com.example.test.data.Type" />
+        <argument
+            android:name="time"
+            app:argType="string" />
     </fragment>
     <fragment
-        android:id="@+id/fragment_network"
-        android:name="com.example.test.NetworkFragment"
-        android:label="fragment_network"
-        tools:layout="@layout/fragment_network" />
+        android:id="@+id/fragment_leaderboard"
+        android:name="com.example.test.LeaderboardFragment"
+        android:label="fragment_leaderboard"
+        tools:layout="@layout/fragment_leaderboard" />
     <fragment
         android:id="@+id/fragment_multiplayer"
         android:name="com.example.test.MultiplayerFragment"

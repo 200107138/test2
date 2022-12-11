@@ -1,6 +1,5 @@
 package com.example.test
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -49,7 +48,7 @@ class MainActivity : AppCompatActivity() {
         })
         NavigationUI.setupWithNavController(binding.bottomBar, navController)
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            if(destination.id == R.id.fragment_training || destination.id == R.id.fragment_rating || destination.id == R.id.fragment_network || destination.id == R.id.fragment_multiplayer || destination.id == R.id.fragment_settings) {
+            if(destination.id == R.id.fragment_training || destination.id == R.id.fragment_rating || destination.id == R.id.fragment_leaderboard || destination.id == R.id.fragment_multiplayer || destination.id == R.id.fragment_settings) {
            binding.myToolbar.visibility = View.GONE
                 binding.bottomBar.visibility = View.VISIBLE
             } else {

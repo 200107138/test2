@@ -20,6 +20,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.example.test.data.Result
+import com.example.test.Users
 
 @BindingAdapter("idText")
 fun TextView.setIdText(item: Result?) {
@@ -29,13 +30,13 @@ fun TextView.setIdText(item: Result?) {
 }
 
 
+
 @BindingAdapter("timeText")
 fun TextView.setTimeText(item: Result?) {
     item?.let {
         text = item.time.toString()
     }
 }
-
 
 @BindingAdapter("dateText")
 fun TextView.setDateText(item: Result?) {

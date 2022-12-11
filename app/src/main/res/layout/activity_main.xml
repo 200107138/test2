@@ -15,7 +15,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:background="#FAFAFA"
-
+                    android:fontFamily="@font/mavenprobold"
                     app:popupTheme="@style/Theme.Test"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
